@@ -1,0 +1,13 @@
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.BLL.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.BLL.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.DAL.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.Helpers.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.POCO.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.DAL.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.Helpers.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\DTWrapper.POCO.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\fr\DTWrapper.Helpers.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\bin\x86\Release\fr\DTWrapper.POCO.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\obj\x86\Release\DTWrapper.BLL.csprojResolveAssemblyReference.cache
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\obj\x86\Release\DTWrapper.BLL.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BLL\obj\x86\Release\DTWrapper.BLL.pdb

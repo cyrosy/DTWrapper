@@ -1,0 +1,50 @@
+﻿<Window x:Name="mainWindow" x:Class="DTWrapper.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Icon="Resources/programIcon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="mainMenu" VerticalAlignment="Top">
+            <MenuItem x:Name="fileMenu" Header="File"/>
+        </Menu>
+        <ToolBarTray VerticalAlignment="Top" Grid.Row="1">
+            <ToolBar x:Name="mainToolbar" ToolBarTray.IsLocked="True">
+                <Button x:Name="addButton">
+                    <Image Source="Resources/add.png" />
+                </Button>
+                <Separator />
+                <Button x:Name="playButton">
+                    <Image Source="Resources/start.png" />
+                </Button>
+                <Button x:Name="editButton">
+                    <Image Source="Resources/edit.png" />
+                </Button>
+                <Button x:Name="deleteButton">
+                    <Image Source="Resources/del.png" />
+                </Button>
+            </ToolBar>
+            <ToolBar x:Name="viewToolbar" ToolBarTray.IsLocked="True">
+                <Button x:Name="viewButton" ContextMenuService.IsEnabled="False" Click="viewButton_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="bigIconsView" Header="Grandes Icônes"/>
+                            <MenuItem x:Name="smallIconsView" Header="Petites Icônes"/>
+                            <MenuItem x:Name="listView" Header="Liste"/>
+                            <MenuItem x:Name="detailsView" Header="Détails"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                    <Image Source="Resources/zoom.png" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar x:Name="statusBar" VerticalAlignment="Bottom" Grid.Row="3">
+            <StatusBarItem x:Name="DTVersion" Content="Version" />
+            <StatusBarItem x:Name="DTDrive" Content="Drive" BorderThickness="0" />
+        </StatusBar>
+    </Grid>
+</Window>

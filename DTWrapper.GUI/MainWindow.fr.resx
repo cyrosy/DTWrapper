@@ -3326,23 +3326,26 @@
   <data name="isoColumn.Text" xml:space="preserve">
     <value>Chemin de l'image disque</value>
   </data>
-  <data name="launcherColumn.Text" xml:space="preserve">
-    <value>Chemin du lanceur</value>
+  <data name="createShortcutOnDesktopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
   </data>
-  <data name="addGameMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+  <data name="createShortcutOnDesktopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Créer un raccourci sur le Bureau</value>
   </data>
-  <data name="addGameMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ajouter un jeu</value>
+  <data name="pinToTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
   </data>
-  <data name="optionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+  <data name="pinToTaskbarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Epingler à la Barre des Tâches</value>
   </data>
-  <data name="exitMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+  <data name="progListContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 48</value>
   </data>
-  <data name="exitMenuItem.Text" xml:space="preserve">
-    <value>&amp;Quitter</value>
+  <data name="selectedDrive.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 17</value>
+  </data>
+  <data name="selectedDrive.Text" xml:space="preserve">
+    <value>Lecteur</value>
   </data>
   <data name="fileMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
@@ -3350,29 +3353,20 @@
   <data name="fileMenu.Text" xml:space="preserve">
     <value>&amp;Fichier</value>
   </data>
-  <data name="startMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
+  <data name="addMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 22</value>
   </data>
-  <data name="startMenuItem.Text" xml:space="preserve">
-    <value>&amp;Jouer</value>
+  <data name="addMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ajouter un programme</value>
   </data>
-  <data name="editMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
+  <data name="optionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 22</value>
   </data>
-  <data name="editMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modifier</value>
+  <data name="exitMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 22</value>
   </data>
-  <data name="deleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="deleteMenuItem.Text" xml:space="preserve">
-    <value>&amp;Supprimer</value>
-  </data>
-  <data name="gameMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 20</value>
-  </data>
-  <data name="gameMenu.Text" xml:space="preserve">
-    <value>&amp;Jeu</value>
+  <data name="exitMenuItem.Text" xml:space="preserve">
+    <value>&amp;Quitter</value>
   </data>
   <data name="aboutItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -3380,17 +3374,20 @@
   <data name="aboutItem.Text" xml:space="preserve">
     <value>&amp;À Propos</value>
   </data>
-  <data name="addGameButton.Text" xml:space="preserve">
-    <value>Ajouter un jeu</value>
+  <data name="addButton.Text" xml:space="preserve">
+    <value>Ajouter un programme</value>
   </data>
-  <data name="startGameButton.Text" xml:space="preserve">
+  <data name="startButton.Text" xml:space="preserve">
     <value>Jouer</value>
   </data>
-  <data name="editGameButton.Text" xml:space="preserve">
+  <data name="editButton.Text" xml:space="preserve">
     <value>Modifier</value>
   </data>
-  <data name="deleteGameButton.Text" xml:space="preserve">
+  <data name="deleteButton.Text" xml:space="preserve">
     <value>Supprimer</value>
+  </data>
+  <data name="listViewDisplayModeDropDown.Text" xml:space="preserve">
+    <value>Affichage</value>
   </data>
   <data name="detailsListViewMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 22</value>
@@ -3415,9 +3412,6 @@
   </data>
   <data name="largeIconsListViewMode.Text" xml:space="preserve">
     <value>Grandes Icônes</value>
-  </data>
-  <data name="listViewDisplayModeDropDown.Text" xml:space="preserve">
-    <value>Affichage</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6618,19 +6612,46 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Daemon Tools Wrapper</value>
   </data>
-  <data name="Game.AskDelete.Message" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer le jeu {0} ?</value>
+  <data name="DT.NotFound" xml:space="preserve">
+    <value>Daemon Tools non trouvé</value>
   </data>
-  <data name="Game.AskDelete.Title" xml:space="preserve">
-    <value>Supprimer un jeu ?</value>
+  <data name="DT.Searching" xml:space="preserve">
+    <value>Recherche de l'installation de Daemon Tools ...</value>
   </data>
-  <data name="Game.Deleted" xml:space="preserve">
-    <value>Jeu {0} supprimé</value>
+  <data name="Error.InvalidExe" xml:space="preserve">
+    <value>Exécutable invalide</value>
   </data>
-  <data name="Game.NotDeleted" xml:space="preserve">
-    <value>Erreur pendant la suppression du jeu {0}</value>
+  <data name="Error.InvalidIcon" xml:space="preserve">
+    <value>Icône invalide</value>
   </data>
-  <data name="Game.NotFound" xml:space="preserve">
-    <value>Jeu non trouvé</value>
+  <data name="Error.InvalidIso" xml:space="preserve">
+    <value>Image disque invalide</value>
+  </data>
+  <data name="Prog.AskDelete.Message" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer le programme "{0}" ?</value>
+  </data>
+  <data name="Prog.AskDelete.Title" xml:space="preserve">
+    <value>Supprimer un programme</value>
+  </data>
+  <data name="Prog.Deleted" xml:space="preserve">
+    <value>Programme "{0}" supprimé</value>
+  </data>
+  <data name="Prog.Mounting" xml:space="preserve">
+    <value>Image "{0}" en cours de montage ...</value>
+  </data>
+  <data name="Prog.NotDeleted" xml:space="preserve">
+    <value>Programme "{0}" non supprimé</value>
+  </data>
+  <data name="Prog.NotFound" xml:space="preserve">
+    <value>Programme "{0}" non trouvé</value>
+  </data>
+  <data name="Prog.Preparing" xml:space="preserve">
+    <value>Préparation pour le lancement ...</value>
+  </data>
+  <data name="Prog.Starting" xml:space="preserve">
+    <value>Démarrage de "{0}" ...</value>
+  </data>
+  <data name="Prog.Unmounting" xml:space="preserve">
+    <value>Image "{0}" en cours de démontage ...</value>
   </data>
 </root>

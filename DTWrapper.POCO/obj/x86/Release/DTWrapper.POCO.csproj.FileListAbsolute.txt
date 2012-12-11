@@ -1,0 +1,13 @@
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\DTWrapper.POCO.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\DTWrapper.POCO.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\fr\DTWrapper.POCO.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\DTWrapper.Helpers.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\DTWrapper.Helpers.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\bin\x86\Release\fr\DTWrapper.Helpers.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.csprojResolveAssemblyReference.cache
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.Game.resources
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.Game.fr.resources
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.csproj.GenerateResource.Cache
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\fr\DTWrapper.POCO.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.POCO\obj\x86\Release\DTWrapper.POCO.pdb

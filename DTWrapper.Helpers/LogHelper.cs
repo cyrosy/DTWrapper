@@ -35,7 +35,9 @@ namespace DTWrapper.Helpers
         private static string Filename = "";
 
         private static ResourceManager Locale = new ResourceManager("DTWrapper.Helpers.LogHelper", typeof(LogHelper).Assembly);
-        
+
+        private LogHelper() {}
+
         /// <summary>
         /// Rotate the old log files, and create a new one
         /// </summary>

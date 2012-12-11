@@ -22,7 +22,10 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Windows.Forms;
-using DTWrapper.GUI;
+
+using DTWrapper.CLI;
+//using DTWrapper.GUI;
+using DTWrapper.WPF;
 using DTWrapper.Helpers;
 
 namespace DTWrapper
@@ -34,7 +37,7 @@ namespace DTWrapper
         /// Application's entry point
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
             {
@@ -43,16 +46,31 @@ namespace DTWrapper
             }
             else
             {
-                try
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                if (args.Length < 1)
                 {
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new MainWindow());
+                    RunGUI();
                 }
-                catch (Exception e)
+                else
                 {
-                    LogHelper.RaiseError(null, e.Message + Environment.NewLine + e.StackTrace.ToString());
+                    Environment.Exit(Program.Main(args));
                 }
+            }
+        }
+
+        private static void RunGUI()
+        {
+            try
+            {
+                App app = new App();
+                app.MainWindow = new MainWindow();
+                app.MainWindow.Show();
+                app.Run();
+            }
+            catch (Exception e)
+            {
+                LogHelper.RaiseError(null, e.Message + Environment.NewLine + e.StackTrace.ToString());
             }
         }
     }

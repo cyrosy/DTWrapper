@@ -14,6 +14,7 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <ExpressionBlendVersion>5.0.30709.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -107,11 +108,17 @@
     <Compile Include="AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditGameWindow.cs">
+    <Compile Include="EditProgWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditGameWindow.Designer.cs">
-      <DependentUpon>EditGameWindow.cs</DependentUpon>
+    <Compile Include="EditProgWindow.Designer.cs">
+      <DependentUpon>EditProgWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoWindow.Designer.cs">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -126,23 +133,23 @@
       <DependentUpon>OptionsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <DependentUpon>Settings.settings</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="AboutWindow.fr.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditGameWindow.fr.resx">
-      <DependentUpon>EditGameWindow.cs</DependentUpon>
+    <EmbeddedResource Include="EditProgWindow.fr.resx">
+      <DependentUpon>EditProgWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditGameWindow.resx">
-      <DependentUpon>EditGameWindow.cs</DependentUpon>
+    <EmbeddedResource Include="EditProgWindow.resx">
+      <DependentUpon>EditProgWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoWindow.fr.resx">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoWindow.resx">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.fr.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -168,35 +175,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Resources\programIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DTWrapper.BLL\DTWrapper.BLL.csproj">
-      <Project>{9041FF1E-B69D-4C02-AE36-CBA9A4972519}</Project>
-      <Name>DTWrapper.BLL</Name>
+    <ProjectReference Include="..\DTWrapper.BDD\DTWrapper.BDD.csproj">
+      <Project>{de1b992a-1cee-4d73-b75f-87a01bc07101}</Project>
+      <Name>DTWrapper.BDD</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTWrapper.Helpers\DTWrapper.Helpers.csproj">
       <Project>{C739809E-AC34-4EDE-BDD4-DA9A308A1A04}</Project>
       <Name>DTWrapper.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTWrapper.POCO\DTWrapper.POCO.csproj">
-      <Project>{BB308C7D-DB6E-40FF-A9B0-2D4906232062}</Project>
-      <Name>DTWrapper.POCO</Name>
+    <ProjectReference Include="..\DTWrapper.ShellExtension\DTWrapper.ShellExtension.csproj">
+      <Project>{a4e85b16-81db-4844-a5bd-5a55ac671f10}</Project>
+      <Name>DTWrapper.ShellExtension</Name>
+      <Private>True</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

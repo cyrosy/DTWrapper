@@ -126,4 +126,13 @@
   <data name="driveLabel.Text" xml:space="preserve">
     <value>Choisissez un lecteur virtuel :</value>
   </data>
+  <data name="noDTDrive" xml:space="preserve">
+    <value>Aucun lecteur virtuel n'a été trouvé. Ajoutez-en un avec Daemon Tools et ré-essayez.</value>
+  </data>
+  <data name="DriveSelected" xml:space="preserve">
+    <value>Lecteur virtuel {0} sélectionné</value>
+  </data>
+  <data name="DriveSearching" xml:space="preserve">
+    <value>Recherche de lecteurs virtuels ...</value>
+  </data>
 </root>

@@ -61,7 +61,7 @@ namespace DTWrapper.POCO
                 return false;
             }
 
-            if (!DTHelper.Mount(Iso, virtualDrive))
+            if (!DT.Mount(Iso, virtualDrive))
             {
                 LogHelper.WriteLine(Locale.GetString("IsoNotMounted"));
                 return false;
@@ -89,7 +89,7 @@ namespace DTWrapper.POCO
                 return false;
             }
 
-            DTHelper.Umount(virtualDrive);
+            DT.Umount(virtualDrive);
             return true;
         }
 

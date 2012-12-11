@@ -28,44 +28,46 @@ namespace DTWrapper.Helpers
     /// </summary>
     public class VirtualDrive
     {
-        private ResourceManager Locale = new ResourceManager("DTWrapper.Helpers.VirtualDrive", typeof(VirtualDrive).Assembly);
+        private int _num;
+        private VirtualDriveType _type;
+        private char _letter;
 
-        public DriveType Type { get; private set; }
-        public int Num { get; private set; }
-        public char Letter { get; private set; }
-        public bool IsValid { get; private set; }
+        public int Num { get { return _num; } }
+        public VirtualDriveType Type { get { return _type; } }
+        public char Letter { get { return _letter; } }
+        public bool IsValid { get { return (_type == VirtualDriveType.NONE) ? false : (DT.CountDrv(_type) > _num); } }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="type">The virtual drive type</param>
-        /// <param name="num">The virtual drive number</param>
-        public VirtualDrive(DriveType type, int num)
+        public VirtualDrive(VirtualDriveType type, int num)
         {
-            IsValid = false;
-            Type = type;
-            Num = num;
-            if (Type != DriveType.NONE)
-            {
-                Letter = DTHelper.GetLetter(Type, Num);
-                if (Num >= 0 && Num < DTHelper.CountDrv(Type))
-                {
-                    IsValid = true;
-                }
-            }
+            _type = type;
+            _num = num;
+            _letter = DT.GetLetter(type, num);
         }
 
         /// <summary>
-        /// Get a string representing the virtual drive
+        /// Mount a disk image in the virtual drive
         /// </summary>
-        /// <returns>(X:) Type-n</returns>
+        /// <param name="path">Path to the disk image</param>
+        /// <returns>true on success, false on failure</returns>
+        public bool Mount(string Path)
+        {
+            return DT.Exec("-mount " + _type.ToString() + "," + _num + ",\"" + Path + "\"") == 0;
+        }
+
+        /// <summary>
+        /// Unmount a disk image from the virtual drive
+        /// </summary>
+        /// <returns>true on success, false on failure</returns>
+        public bool Umount()
+        {
+            return DT.Exec("-unmount " + _type.ToString() + "," + _num) == 0;
+        }
+
         public override string ToString()
         {
-            if (!IsValid)
-            {
-                return Locale.GetString("InvalidDrive");
-            }
-            return "(" + Letter + ":) " + Type.ToString() + "-" + Num; 
+            if (_type == VirtualDriveType.NONE)
+                return "None";
+            return _type.ToString() + "-" + _num.ToString() + " (" + _letter + ":)";
         }
     }
 }

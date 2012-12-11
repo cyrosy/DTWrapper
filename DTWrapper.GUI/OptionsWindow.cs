@@ -24,6 +24,8 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Windows.Forms;
+
+using DTWrapper.BDD;
 using DTWrapper.Helpers;
 
 namespace DTWrapper.GUI
@@ -31,14 +33,15 @@ namespace DTWrapper.GUI
     public partial class OptionsWindow : Form
     {
         private ResourceManager Locale = new ResourceManager("DTWrapper.GUI.OptionsWindow", typeof(OptionsWindow).Assembly);
+        private Options _options;
 
-        public OptionsWindow()
+        public OptionsWindow(Options options)
         {
             InitializeComponent();
+            _options = options;
             if (!loadDrives())
             {
-                addDrive();
-                loadDrives();
+                LogHelper.RaiseError(this, Locale.GetString("NoDTDrive"));
             }
         }
 
@@ -52,38 +55,38 @@ namespace DTWrapper.GUI
             }
 
             VirtualDrive drive = (VirtualDrive)driveField.SelectedItem;
-            if (drive.Num >= DTHelper.CountDrv(drive.Type))
+            if (drive.Num >= DT.CountDrv(drive.Type))
             {
                 return false;
             }
 
-            Properties.Settings.Default.DriveType = drive.Type;
-            Properties.Settings.Default.DriveNum = drive.Num;
-            Properties.Settings.Default.Save();
-            LogHelper.WriteLine(String.Format(Locale.GetString("DriveSelected"), drive.Type.ToString(), drive.Num, drive.Letter), LogHelper.MessageType.INFO);
+            _options.VirtualDrive = drive;
+            LogHelper.WriteLine(String.Format(Locale.GetString("DriveSelected"), drive.ToString()), LogHelper.MessageType.INFO);
             return true;
         }
 
         private bool loadDrives()
         {
+            InfoWindow info = new InfoWindow(Locale.GetString("DriveSearching"));
+            info.Show(this);
             driveField.Items.Clear();
             List<VirtualDrive> drives = new List<VirtualDrive>();
 
-            for (int i = 0; i < DTHelper.CountDrv(DriveType.DT); i++)
+            for (int i = 0; i < DT.CountDrv(VirtualDriveType.DT); i++)
             {
-                drives.Add(new VirtualDrive(DriveType.DT, i));
+                drives.Add(new VirtualDrive(VirtualDriveType.DT, i));
             }
 
-            for (int i = 0; i < DTHelper.CountDrv(DriveType.SCSI); i++)
+            for (int i = 0; i < DT.CountDrv(VirtualDriveType.SCSI); i++)
             {
-                drives.Add(new VirtualDrive(DriveType.SCSI, i));
+                drives.Add(new VirtualDrive(VirtualDriveType.SCSI, i));
             }
 
-            if (RegistryHelper.Type() == "Pro")
+            if (DT.Type == DTType.Pro)
             {
-                for (int i = 0; i < DTHelper.CountDrv(DriveType.IDE); i++)
+                for (int i = 0; i < DT.CountDrv(VirtualDriveType.IDE); i++)
                 {
-                    drives.Add(new VirtualDrive(DriveType.IDE, i));
+                    drives.Add(new VirtualDrive(VirtualDriveType.IDE, i));
                 }
             }
 
@@ -98,41 +101,15 @@ namespace DTWrapper.GUI
             {
                 driveField.Items.Add(drive);
                 
-                if (drive.Type == Properties.Settings.Default.DriveType
-                && drive.Num == Properties.Settings.Default.DriveNum)
+                if (drive.Type == _options.VirtualDrive.Type
+                && drive.Num == _options.VirtualDrive.Num)
                 {
                     driveField.SelectedIndex = driveField.Items.Count - 1;
                 }
             }
+            info.Close();
 
             return true;
-        }
-
-        private void addDrive()
-        {
-            MessageBox.Show(Locale.GetString("AddDrive.Text"), Locale.GetString("AddDrive.Title"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (RegistryHelper.Type() == "Pro" && DTHelper.AddDrv(DriveType.IDE))
-            {
-                LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("AddDrive.Added"), DriveType.IDE.ToString()));
-            }
-            else
-            {
-                if (DTHelper.AddDrv(DriveType.SCSI))
-                {
-                    LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("AddDrive.Added"), DriveType.SCSI.ToString()));
-                }
-                else
-                {
-                    if (DTHelper.AddDrv(DriveType.DT))
-                    {
-                        LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("AddDrive.Added"), DriveType.DT.ToString()));
-                    }
-                    else
-                    {
-                        LogHelper.RaiseError(this, Locale.GetString("AddDrive.NotAdded"));
-                    }
-                }
-            }
         }
 
         #endregion

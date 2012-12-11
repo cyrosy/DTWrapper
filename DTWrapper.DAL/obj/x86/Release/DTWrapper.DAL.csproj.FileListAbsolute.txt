@@ -1,0 +1,14 @@
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.DAL.dll.config
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.DAL.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.DAL.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.Helpers.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.POCO.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.Helpers.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\DTWrapper.POCO.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\fr\DTWrapper.Helpers.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\fr\DTWrapper.POCO.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\obj\x86\Release\DTWrapper.DAL.csprojResolveAssemblyReference.cache
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\obj\x86\Release\DTWrapper.DAL.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\obj\x86\Release\DTWrapper.DAL.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\System.Data.SQLite.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.DAL\bin\x86\Release\System.Data.SQLite.Linq.dll

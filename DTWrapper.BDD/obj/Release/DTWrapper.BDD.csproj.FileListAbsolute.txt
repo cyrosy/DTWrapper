@@ -1,0 +1,8 @@
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\bin\Release\DTWrapper.BDD.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\bin\Release\DTWrapper.BDD.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\bin\Release\DTWrapper.Helpers.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\bin\Release\DTWrapper.Helpers.pdb
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\bin\Release\fr\DTWrapper.Helpers.resources.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\obj\Release\DTWrapper.BDD.csprojResolveAssemblyReference.cache
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\obj\Release\DTWrapper.BDD.dll
+D:\Documents\Projets\DTWrapper\DTWrapper.BDD\obj\Release\DTWrapper.BDD.pdb

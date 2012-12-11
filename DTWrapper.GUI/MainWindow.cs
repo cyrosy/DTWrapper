@@ -19,29 +19,35 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Windows.Forms;
+
+using DTWrapper.BDD;
 using DTWrapper.Helpers;
-using DTWrapper.BLL;
-using DTWrapper.POCO;
+using DTWrapper.ShellExtension;
 
 namespace DTWrapper.GUI
 {
     public partial class MainWindow : Form
     {
+        private Options _options = new Options();
         private ResourceManager Locale = new ResourceManager("DTWrapper.GUI.MainWindow", typeof(MainWindow).Assembly);
-        private VirtualDrive virtualDrive = new VirtualDrive(Properties.Settings.Default.DriveType, Properties.Settings.Default.DriveNum);
+        private VirtualDrive virtualDrive;
+        private ProgList progList = new ProgList();
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Load += new EventHandler(find_DT);
+            this.Load += new EventHandler(findDT);
             refreshWindow();
 
-            switch (Properties.Settings.Default.GamesView)
+            _options.Reload();
+
+            switch (_options.ListView)
             {
                 case View.LargeIcon:
                     largeIconsListViewMode_Click(null, null);
@@ -60,130 +66,164 @@ namespace DTWrapper.GUI
 
         #region Actions
 
-        void find_DT(object sender, EventArgs e)
+        public void findDT(object sender, EventArgs e) { findDT(); }
+        public void findDT()
         {
-            if (!RegistryHelper.KeyFound())
+            InfoWindow info = new InfoWindow(Locale.GetString("DT.Searching"));
+            info.Show(this);
+            if (DT.Type == DTType.None)
             {
                 LogHelper.RaiseError(this, Locale.GetString("DT.NotFound"));
                 this.DTVersion.Text = Locale.GetString("DT.NotFound");
+                info.Close();
             }
             else
             {
-                this.DTVersion.Text = "DT " + RegistryHelper.Type() + " " + RegistryHelper.Version();
+                this.DTVersion.Text = "DT " + DT.Type.ToString() + " " + DT.Version;
                 LogHelper.WriteLine(this.DTVersion.Text, LogHelper.MessageType.INFO);
-
-                if (Properties.Settings.Default.DriveType == DriveType.NONE)
+                if (!_options.FileExists() || !_options.Reload() || !_options.VirtualDrive.IsValid)
                 {
+                    info.Close();
                     editOptions();
                 }
-
-                selectedDrive.Text = virtualDrive.ToString();
+                else
+                {
+                    virtualDrive = _options.VirtualDrive;
+                    selectedDrive.Text = virtualDrive.ToString();
+                    info.Close();
+                }
             }
         }
 
         private void refreshWindow()
         {
-            refreshJeux();
+            refreshProgs();
             refreshButtonsState();
         }
 
-        private void addGame()
+        private void addProg()
         {
-            EditGameWindow editGame = new EditGameWindow();
-            editGame.ShowDialog(this);
+            EditProgWindow editProg = new EditProgWindow(progList);
+            editProg.ShowDialog(this);
             refreshWindow();
         }
 
-        private void startSelectedGame()
+        private bool startSelectedProg()
         {
             refreshButtonsState();
-            if(this.startGameButton.Enabled && virtualDrive.IsValid)
+            if (!this.startButton.Enabled) return false;
+            
+            InfoWindow info = new InfoWindow(Locale.GetString("Prog.Preparing"));
+            info.Show(this);
+
+            Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
+            if (prog.DiskImage.Length > 0 && !virtualDrive.IsValid)
             {
-                GamesManager manager = new GamesManager();
-                Game game = manager.GetGame(Int64.Parse(gamesListView.SelectedItems[0].Name));
-                this.Hide();
-                this.trayIcon.Text = String.Format(Locale.GetString("trayIcon.Text"), game.Name);
-                this.trayIcon.Visible = true;
-                game.play(virtualDrive);
-                this.trayIcon.Visible = false;
-                refreshWindow();
-                this.Show();
+                info.Close();
+                return false;
             }
+
+            this.Hide();
+            this.trayIcon.Text = String.Format(Locale.GetString("trayIcon.Text"), prog.Name);
+            this.trayIcon.Visible = true;
+            info.Close();
+
+            info = new InfoWindow(String.Format(Locale.GetString("Prog.Mounting"), prog.DiskImage, prog.Name));
+            info.Show(this);
+            if (!prog.MountDiskImage(virtualDrive)) info.Close();
+            else
+            {
+                info.Close();
+                info = new InfoWindow(String.Format(Locale.GetString("Prog.Starting"), prog.Name));
+                Process proc = prog.Start();
+                info.Close();
+                proc.WaitForExit();
+
+
+                if (prog.DiskImage.Length > 0)
+                {
+                    info = new InfoWindow(String.Format(Locale.GetString("Prog.Unmounting"), prog.DiskImage));
+                    info.Show(this);
+                    virtualDrive.Umount();
+                    info.Close();
+                }
+            }
+
+            this.trayIcon.Visible = false;
+            refreshWindow();
+            this.Show();
+            return true;
         }
 
-        private void editSelectedGame()
+        private void editSelectedProg()
         {
-            if (this.gamesListView.SelectedItems.Count == 1)
+            if (this.progsListView.SelectedItems.Count == 1)
             {
-                GamesManager manager = new GamesManager();
-                Game game = manager.GetGame(Int64.Parse(gamesListView.SelectedItems[0].Name));
-                EditGameWindow editGame = new EditGameWindow(game);
+                EditProgWindow editGame = new EditProgWindow(progList, Int32.Parse(progsListView.SelectedItems[0].Name));
                 editGame.ShowDialog(this);
             }
             refreshWindow();
         }
 
-        private void deleteSelectedGame()
+        private void deleteSelectedProg()
         {
-            if (this.gamesListView.SelectedItems.Count == 1)
+            if (this.progsListView.SelectedItems.Count == 1)
             {
-                GamesManager manager = new GamesManager();
-                Game game = manager.GetGame(Int64.Parse(gamesListView.SelectedItems[0].Name));
-                if (game == null)
+                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
+                if (prog == null)
                 {
-                    LogHelper.RaiseError(this, Locale.GetString("Game.NotFound"));
+                    LogHelper.RaiseError(this, Locale.GetString("Prog.NotFound"));
                 }
-                else if (MessageBox.Show(this, String.Format(Locale.GetString("Game.AskDelete.Message"), game.Name), Locale.GetString("Game.AskDelete.Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                else if (MessageBox.Show(this, String.Format(Locale.GetString("Prog.AskDelete.Message"), prog.Name), Locale.GetString("Prog.AskDelete.Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (manager.DelGame(game))
+                    if (progList.Del(prog))
                     {
-                        LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("Game.Deleted"), game.Name));
+                        LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("Prog.Deleted"), prog.Name));
                     }
                     else
                     {
-                        LogHelper.RaiseError(this, String.Format(Locale.GetString("Game.NotDeleted"), game.Name));
+                        LogHelper.RaiseError(this, String.Format(Locale.GetString("Prog.NotDeleted"), prog.Name));
                     }
                 }
             }
             refreshWindow();
         }
 
-        private void refreshJeux()
+        private void refreshProgs()
         {
-            this.gamesListView.Items.Clear();
+            this.progsListView.Items.Clear();
             this.smallIcons.Images.Clear();
             this.largeIcons.Images.Clear();
 
             ColumnHeaderAutoResizeStyle resizeStyle = ColumnHeaderAutoResizeStyle.HeaderSize;
 
-            GamesManager manager = new GamesManager();
-            foreach (Game game in manager.GetGames())
+            foreach (Prog prog in progList.Progs)
             {
                 bool valid = true;
-                ListViewItem item = new ListViewItem(game.Name, game.ID.ToString());
-                item.Name = game.ID.ToString();
+                ListViewItem item = new ListViewItem(prog.Name, prog.ID.ToString());
+                item.Name = prog.ID.ToString();
                 item.Checked = true;
-                item.ToolTipText = "";
+                item.ToolTipText = prog.ID.ToString();
 
-                ListViewItem.ListViewSubItem exeItem = new ListViewItem.ListViewSubItem(item, game.Exe);
+                ListViewItem.ListViewSubItem exeItem = new ListViewItem.ListViewSubItem(item, prog.Path);
                 exeItem.Tag = "Exe";
                 item.SubItems.Add(exeItem);
-                if (!game.exeOK())
+                if (!prog.PathOK())
                 {
                     valid = false;
                     item.ToolTipText += Locale.GetString("Error.InvalidExe");
                 }
 
-                ListViewItem.ListViewSubItem isoItem = new ListViewItem.ListViewSubItem(item, game.Iso);
-                exeItem.Tag = "Iso";
-                item.SubItems.Add(game.Iso);
-                if (!game.isoOK())
+                ListViewItem.ListViewSubItem isoItem = new ListViewItem.ListViewSubItem(item, prog.DiskImage);
+                exeItem.Tag = "Disk Image";
+                item.SubItems.Add(prog.DiskImage);
+                if (!prog.DiskImageOK())
                 {
                     valid = false;
                     item.ToolTipText += Locale.GetString("Error.InvalidIso");
                 }
 
-                if (!game.iconOK())
+                if (!prog.IconOK())
                 {
                     valid = false;
                     item.ToolTipText += Locale.GetString("Error.InvalidIcon");
@@ -194,13 +234,13 @@ namespace DTWrapper.GUI
                     if(!valid)
                     {
                         item.Checked = false;
-                        smallIcons.Images.Add(game.ID.ToString(), DTWrapper.GUI.Properties.Resources.warning);
-                        largeIcons.Images.Add(game.ID.ToString(), DTWrapper.GUI.Properties.Resources.warning);
+                        smallIcons.Images.Add(prog.ID.ToString(), DTWrapper.GUI.Properties.Resources.warning);
+                        largeIcons.Images.Add(prog.ID.ToString(), DTWrapper.GUI.Properties.Resources.warning);
                     }
                     else
                     {
-                        smallIcons.Images.Add(game.ID.ToString(), Icon.ExtractAssociatedIcon(game.Icon));
-                        largeIcons.Images.Add(game.ID.ToString(), Icon.ExtractAssociatedIcon(game.Icon));
+                        smallIcons.Images.Add(prog.ID.ToString(), Icon.ExtractAssociatedIcon(prog.Icon));
+                        largeIcons.Images.Add(prog.ID.ToString(), Icon.ExtractAssociatedIcon(prog.Icon));
                     }
                 }
                 catch (Exception e)
@@ -208,45 +248,44 @@ namespace DTWrapper.GUI
                     LogHelper.WriteLine(e.ToString(), LogHelper.MessageType.ERROR);
                 }
 
-                this.gamesListView.Items.Add(item);
+                this.progsListView.Items.Add(item);
                 resizeStyle = ColumnHeaderAutoResizeStyle.ColumnContent;
             }
 
             nameColumn.AutoResize(resizeStyle);
             exeColumn.AutoResize(resizeStyle);
             isoColumn.AutoResize(resizeStyle);
+            JumpListHelper.Update();
             refreshButtonsState();
         }
 
         private void refreshButtonsState()
         {
-            if (this.gamesListView.SelectedItems.Count > 0)
+            if (this.progsListView.SelectedItems.Count > 0)
             {
-                if (this.gamesListView.SelectedItems[0].Checked
+                if (this.progsListView.SelectedItems[0].Checked
                 && virtualDrive.IsValid)
                 {
-                    this.startGameButton.Enabled = true;
-                    this.startMenuItem.Enabled = true;
+                    this.startButton.Enabled = true;
                 }
-                this.editGameButton.Enabled = true;
-                this.deleteGameButton.Enabled = true;
-                this.gameMenu.Enabled = true;
+                this.editButton.Enabled = true;
+                this.deleteButton.Enabled = true;
+                this.progListContextMenu.Enabled = true;
             }
             else
             {
-                this.startGameButton.Enabled = false;
-                this.startMenuItem.Enabled = false;
-                this.editGameButton.Enabled = false;
-                this.deleteGameButton.Enabled = false;
-                this.gameMenu.Enabled = false;
+                this.startButton.Enabled = false;
+                this.editButton.Enabled = false;
+                this.deleteButton.Enabled = false;
+                this.progListContextMenu.Enabled = false;
             }
         }
 
         private void editOptions()
         {
-            OptionsWindow options = new OptionsWindow();
+            OptionsWindow options = new OptionsWindow(_options);
             options.ShowDialog(this);
-            virtualDrive = new VirtualDrive(Properties.Settings.Default.DriveType, Properties.Settings.Default.DriveNum);
+            virtualDrive = _options.VirtualDrive;
             selectedDrive.Text = virtualDrive.ToString();
         }
 
@@ -258,7 +297,7 @@ namespace DTWrapper.GUI
 
         #endregion
 
-        #region Games List
+        #region Programs List
 
         private void gamesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -267,7 +306,7 @@ namespace DTWrapper.GUI
 
         private void gamesListView_MouseDoubleClick(object sender, EventArgs e)
         {
-            startSelectedGame();
+            startSelectedProg();
         }
 
         #endregion
@@ -279,29 +318,14 @@ namespace DTWrapper.GUI
             this.Close();
         }
 
-        private void addGameMenuItem_Click(object sender, EventArgs e)
+        private void addMenuItem_Click(object sender, EventArgs e)
         {
-            addGame();
+            addProg();
         }
 
         private void optionsMenuItem_Click(object sender, EventArgs e)
         {
             editOptions();
-        }
-
-        private void startMenuItem_Click(object sender, EventArgs e)
-        {
-            startSelectedGame();
-        }
-
-        private void editMenuItem_Click(object sender, EventArgs e)
-        {
-            editSelectedGame();
-        }
-
-        private void deleteMenuItem_Click(object sender, EventArgs e)
-        {
-            deleteSelectedGame();
         }
 
         private void aboutItem_Click(object sender, EventArgs e)
@@ -315,53 +339,49 @@ namespace DTWrapper.GUI
 
         private void addGameButton_Click(object sender, EventArgs e)
         {
-            addGame();
+            addProg();
         }
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            startSelectedGame();
+            startSelectedProg();
         }
 
         private void editGameButton_Click(object sender, EventArgs e)
         {
-            editSelectedGame();
+            editSelectedProg();
         }
 
         private void deleteGameButton_Click(object sender, EventArgs e)
         {
-            deleteSelectedGame();
+            deleteSelectedProg();
         }
 
         private void detailsListViewMode_Click(object sender, EventArgs e)
         {
-            this.gamesListView.View = View.Details;
-            Properties.Settings.Default.GamesView = View.Details;
-            Properties.Settings.Default.Save();
+            this.progsListView.View = View.Details;
+            _options.ListView = View.Details;
             checkSelectedViewMode(this.detailsListViewMode);
         }
 
         private void listListViewMode_Click(object sender, EventArgs e)
         {
-            this.gamesListView.View = View.List;
-            Properties.Settings.Default.GamesView = View.List;
-            Properties.Settings.Default.Save();
+            this.progsListView.View = View.List;
+            _options.ListView = View.List;
             checkSelectedViewMode(this.listListViewMode);
         }
 
         private void smallIconsListViewMode_Click(object sender, EventArgs e)
         {
-            this.gamesListView.View = View.SmallIcon;
-            Properties.Settings.Default.GamesView = View.SmallIcon;
-            Properties.Settings.Default.Save();
+            this.progsListView.View = View.SmallIcon;
+            _options.ListView = View.SmallIcon;
             checkSelectedViewMode(this.smallIconsListViewMode);
         }
 
         private void largeIconsListViewMode_Click(object sender, EventArgs e)
         {
-            this.gamesListView.View = View.LargeIcon;
-            Properties.Settings.Default.GamesView = View.LargeIcon;
-            Properties.Settings.Default.Save();
+            this.progsListView.View = View.LargeIcon;
+            _options.ListView = View.LargeIcon;
             checkSelectedViewMode(this.largeIconsListViewMode);
         }
 
@@ -375,5 +395,24 @@ namespace DTWrapper.GUI
         }
 
         #endregion
+
+        private void createShortcutOnDesktopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (progsListView.SelectedItems.Count == 1)
+            {
+                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
+                ShortcutHelper.createShortcut(prog);
+            }
+        }
+
+        private void pinToTaskbarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (progsListView.SelectedItems.Count == 1)
+            {
+                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
+                prog.InJumpList = true;
+                JumpListHelper.Update();
+            }
+        }
     }
 }

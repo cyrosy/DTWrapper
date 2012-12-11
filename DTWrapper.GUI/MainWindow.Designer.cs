@@ -48,10 +48,13 @@ namespace DTWrapper.GUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.gamesListView = new System.Windows.Forms.ListView();
+            this.progsListView = new System.Windows.Forms.ListView();
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.isoColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.progListContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.createShortcutOnDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pinToTaskbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.largeIcons = new System.Windows.Forms.ImageList(this.components);
             this.smallIcons = new System.Windows.Forms.ImageList(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -59,27 +62,24 @@ namespace DTWrapper.GUI
             this.selectedDrive = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.addGameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.startMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBar = new System.Windows.Forms.ToolStrip();
-            this.addGameButton = new System.Windows.Forms.ToolStripButton();
+            this.addButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.startGameButton = new System.Windows.Forms.ToolStripButton();
-            this.editGameButton = new System.Windows.Forms.ToolStripButton();
-            this.deleteGameButton = new System.Windows.Forms.ToolStripButton();
+            this.startButton = new System.Windows.Forms.ToolStripButton();
+            this.editButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteButton = new System.Windows.Forms.ToolStripButton();
             this.listViewDisplayModeDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.detailsListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.listListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.smallIconsListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.largeIconsListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBarSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.progListContextMenu.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.menuBar.SuspendLayout();
             this.toolBar.SuspendLayout();
@@ -89,25 +89,26 @@ namespace DTWrapper.GUI
             // 
             resources.ApplyResources(this.trayIcon, "trayIcon");
             // 
-            // gamesListView
+            // progsListView
             // 
-            this.gamesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            resources.ApplyResources(this.progsListView, "progsListView");
+            this.progsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.exeColumn,
             this.isoColumn});
-            resources.ApplyResources(this.gamesListView, "gamesListView");
-            this.gamesListView.FullRowSelect = true;
-            this.gamesListView.GridLines = true;
-            this.gamesListView.HideSelection = false;
-            this.gamesListView.LargeImageList = this.largeIcons;
-            this.gamesListView.MultiSelect = false;
-            this.gamesListView.Name = "gamesListView";
-            this.gamesListView.SmallImageList = this.smallIcons;
-            this.gamesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.gamesListView.UseCompatibleStateImageBehavior = false;
-            this.gamesListView.View = System.Windows.Forms.View.Details;
-            this.gamesListView.SelectedIndexChanged += new System.EventHandler(this.gamesListView_SelectedIndexChanged);
-            this.gamesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gamesListView_MouseDoubleClick);
+            this.progsListView.ContextMenuStrip = this.progListContextMenu;
+            this.progsListView.FullRowSelect = true;
+            this.progsListView.GridLines = true;
+            this.progsListView.HideSelection = false;
+            this.progsListView.LargeImageList = this.largeIcons;
+            this.progsListView.MultiSelect = false;
+            this.progsListView.Name = "progsListView";
+            this.progsListView.SmallImageList = this.smallIcons;
+            this.progsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.progsListView.UseCompatibleStateImageBehavior = false;
+            this.progsListView.View = System.Windows.Forms.View.Details;
+            this.progsListView.SelectedIndexChanged += new System.EventHandler(this.gamesListView_SelectedIndexChanged);
+            this.progsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gamesListView_MouseDoubleClick);
             // 
             // nameColumn
             // 
@@ -124,6 +125,26 @@ namespace DTWrapper.GUI
             this.isoColumn.Tag = "Iso";
             resources.ApplyResources(this.isoColumn, "isoColumn");
             // 
+            // progListContextMenu
+            // 
+            resources.ApplyResources(this.progListContextMenu, "progListContextMenu");
+            this.progListContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createShortcutOnDesktopToolStripMenuItem,
+            this.pinToTaskbarToolStripMenuItem});
+            this.progListContextMenu.Name = "progListContextMenu";
+            // 
+            // createShortcutOnDesktopToolStripMenuItem
+            // 
+            resources.ApplyResources(this.createShortcutOnDesktopToolStripMenuItem, "createShortcutOnDesktopToolStripMenuItem");
+            this.createShortcutOnDesktopToolStripMenuItem.Name = "createShortcutOnDesktopToolStripMenuItem";
+            this.createShortcutOnDesktopToolStripMenuItem.Click += new System.EventHandler(this.createShortcutOnDesktopToolStripMenuItem_Click);
+            // 
+            // pinToTaskbarToolStripMenuItem
+            // 
+            resources.ApplyResources(this.pinToTaskbarToolStripMenuItem, "pinToTaskbarToolStripMenuItem");
+            this.pinToTaskbarToolStripMenuItem.Name = "pinToTaskbarToolStripMenuItem";
+            this.pinToTaskbarToolStripMenuItem.Click += new System.EventHandler(this.pinToTaskbarToolStripMenuItem_Click);
+            // 
             // largeIcons
             // 
             this.largeIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -138,154 +159,124 @@ namespace DTWrapper.GUI
             // 
             // statusBar
             // 
+            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DTVersion,
             this.selectedDrive});
-            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             this.statusBar.SizingGrip = false;
             // 
             // DTVersion
             // 
-            this.DTVersion.Name = "DTVersion";
             resources.ApplyResources(this.DTVersion, "DTVersion");
+            this.DTVersion.Name = "DTVersion";
             // 
             // selectedDrive
             // 
-            this.selectedDrive.Name = "selectedDrive";
             resources.ApplyResources(this.selectedDrive, "selectedDrive");
+            this.selectedDrive.Name = "selectedDrive";
             // 
             // menuBar
             // 
+            resources.ApplyResources(this.menuBar, "menuBar");
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
-            this.gameMenu,
             this.aboutMenu});
-            resources.ApplyResources(this.menuBar, "menuBar");
             this.menuBar.Name = "menuBar";
             // 
             // fileMenu
             // 
+            resources.ApplyResources(this.fileMenu, "fileMenu");
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addGameMenuItem,
+            this.addMenuItem,
             this.optionsMenuItem,
             this.exitMenuItem});
             this.fileMenu.Name = "fileMenu";
-            resources.ApplyResources(this.fileMenu, "fileMenu");
             // 
-            // addGameMenuItem
+            // addMenuItem
             // 
-            this.addGameMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.add;
-            this.addGameMenuItem.Name = "addGameMenuItem";
-            resources.ApplyResources(this.addGameMenuItem, "addGameMenuItem");
-            this.addGameMenuItem.Click += new System.EventHandler(this.addGameMenuItem_Click);
+            resources.ApplyResources(this.addMenuItem, "addMenuItem");
+            this.addMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.add;
+            this.addMenuItem.Name = "addMenuItem";
+            this.addMenuItem.Click += new System.EventHandler(this.addMenuItem_Click);
             // 
             // optionsMenuItem
             // 
-            this.optionsMenuItem.Name = "optionsMenuItem";
             resources.ApplyResources(this.optionsMenuItem, "optionsMenuItem");
+            this.optionsMenuItem.Name = "optionsMenuItem";
             this.optionsMenuItem.Click += new System.EventHandler(this.optionsMenuItem_Click);
             // 
             // exitMenuItem
             // 
-            this.exitMenuItem.Name = "exitMenuItem";
             resources.ApplyResources(this.exitMenuItem, "exitMenuItem");
+            this.exitMenuItem.Name = "exitMenuItem";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
-            // 
-            // gameMenu
-            // 
-            this.gameMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startMenuItem,
-            this.editMenuItem,
-            this.deleteMenuItem});
-            this.gameMenu.Name = "gameMenu";
-            resources.ApplyResources(this.gameMenu, "gameMenu");
-            // 
-            // startMenuItem
-            // 
-            this.startMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.play;
-            this.startMenuItem.Name = "startMenuItem";
-            resources.ApplyResources(this.startMenuItem, "startMenuItem");
-            this.startMenuItem.Click += new System.EventHandler(this.startMenuItem_Click);
-            // 
-            // editMenuItem
-            // 
-            this.editMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.edit;
-            this.editMenuItem.Name = "editMenuItem";
-            resources.ApplyResources(this.editMenuItem, "editMenuItem");
-            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
-            // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.del;
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            resources.ApplyResources(this.deleteMenuItem, "deleteMenuItem");
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // aboutMenu
             // 
+            resources.ApplyResources(this.aboutMenu, "aboutMenu");
             this.aboutMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutItem});
             this.aboutMenu.Name = "aboutMenu";
-            resources.ApplyResources(this.aboutMenu, "aboutMenu");
             // 
             // aboutItem
             // 
-            this.aboutItem.Name = "aboutItem";
             resources.ApplyResources(this.aboutItem, "aboutItem");
+            this.aboutItem.Name = "aboutItem";
             this.aboutItem.Click += new System.EventHandler(this.aboutItem_Click);
             // 
             // toolBar
             // 
-            this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addGameButton,
-            this.toolStripSeparator1,
-            this.startGameButton,
-            this.editGameButton,
-            this.deleteGameButton,
-            this.listViewDisplayModeDropDown});
             resources.ApplyResources(this.toolBar, "toolBar");
+            this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addButton,
+            this.toolStripSeparator1,
+            this.startButton,
+            this.editButton,
+            this.deleteButton,
+            this.listViewDisplayModeDropDown});
             this.toolBar.Name = "toolBar";
             // 
-            // addGameButton
+            // addButton
             // 
-            this.addGameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addGameButton.Image = global::DTWrapper.GUI.Properties.Resources.add;
-            resources.ApplyResources(this.addGameButton, "addGameButton");
-            this.addGameButton.Name = "addGameButton";
-            this.addGameButton.Click += new System.EventHandler(this.addGameButton_Click);
+            resources.ApplyResources(this.addButton, "addButton");
+            this.addButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addButton.Image = global::DTWrapper.GUI.Properties.Resources.add;
+            this.addButton.Name = "addButton";
+            this.addButton.Click += new System.EventHandler(this.addGameButton_Click);
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             // 
-            // startGameButton
+            // startButton
             // 
-            this.startGameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.startGameButton.Image = global::DTWrapper.GUI.Properties.Resources.play;
-            resources.ApplyResources(this.startGameButton, "startGameButton");
-            this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
+            resources.ApplyResources(this.startButton, "startButton");
+            this.startButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.startButton.Image = global::DTWrapper.GUI.Properties.Resources.play;
+            this.startButton.Name = "startButton";
+            this.startButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
-            // editGameButton
+            // editButton
             // 
-            this.editGameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.editGameButton.Image = global::DTWrapper.GUI.Properties.Resources.edit;
-            resources.ApplyResources(this.editGameButton, "editGameButton");
-            this.editGameButton.Name = "editGameButton";
-            this.editGameButton.Click += new System.EventHandler(this.editGameButton_Click);
+            resources.ApplyResources(this.editButton, "editButton");
+            this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.editButton.Image = global::DTWrapper.GUI.Properties.Resources.edit;
+            this.editButton.Name = "editButton";
+            this.editButton.Click += new System.EventHandler(this.editGameButton_Click);
             // 
-            // deleteGameButton
+            // deleteButton
             // 
-            this.deleteGameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.deleteGameButton.Image = global::DTWrapper.GUI.Properties.Resources.del;
-            resources.ApplyResources(this.deleteGameButton, "deleteGameButton");
-            this.deleteGameButton.Name = "deleteGameButton";
-            this.deleteGameButton.Click += new System.EventHandler(this.deleteGameButton_Click);
+            resources.ApplyResources(this.deleteButton, "deleteButton");
+            this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteButton.Image = global::DTWrapper.GUI.Properties.Resources.del;
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Click += new System.EventHandler(this.deleteGameButton_Click);
             // 
             // listViewDisplayModeDropDown
             // 
+            resources.ApplyResources(this.listViewDisplayModeDropDown, "listViewDisplayModeDropDown");
             this.listViewDisplayModeDropDown.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.listViewDisplayModeDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.listViewDisplayModeDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -294,48 +285,48 @@ namespace DTWrapper.GUI
             this.smallIconsListViewMode,
             this.largeIconsListViewMode});
             this.listViewDisplayModeDropDown.Image = global::DTWrapper.GUI.Properties.Resources.zoom;
-            resources.ApplyResources(this.listViewDisplayModeDropDown, "listViewDisplayModeDropDown");
             this.listViewDisplayModeDropDown.Name = "listViewDisplayModeDropDown";
             // 
             // detailsListViewMode
             // 
-            this.detailsListViewMode.Name = "detailsListViewMode";
             resources.ApplyResources(this.detailsListViewMode, "detailsListViewMode");
+            this.detailsListViewMode.Name = "detailsListViewMode";
             this.detailsListViewMode.Click += new System.EventHandler(this.detailsListViewMode_Click);
             // 
             // listListViewMode
             // 
-            this.listListViewMode.Name = "listListViewMode";
             resources.ApplyResources(this.listListViewMode, "listListViewMode");
+            this.listListViewMode.Name = "listListViewMode";
             this.listListViewMode.Click += new System.EventHandler(this.listListViewMode_Click);
             // 
             // smallIconsListViewMode
             // 
-            this.smallIconsListViewMode.Name = "smallIconsListViewMode";
             resources.ApplyResources(this.smallIconsListViewMode, "smallIconsListViewMode");
+            this.smallIconsListViewMode.Name = "smallIconsListViewMode";
             this.smallIconsListViewMode.Click += new System.EventHandler(this.smallIconsListViewMode_Click);
             // 
             // largeIconsListViewMode
             // 
-            this.largeIconsListViewMode.Name = "largeIconsListViewMode";
             resources.ApplyResources(this.largeIconsListViewMode, "largeIconsListViewMode");
+            this.largeIconsListViewMode.Name = "largeIconsListViewMode";
             this.largeIconsListViewMode.Click += new System.EventHandler(this.largeIconsListViewMode_Click);
             // 
             // menuBarSeparator
             // 
-            this.menuBarSeparator.Name = "menuBarSeparator";
             resources.ApplyResources(this.menuBarSeparator, "menuBarSeparator");
+            this.menuBarSeparator.Name = "menuBarSeparator";
             // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.gamesListView);
+            this.Controls.Add(this.progsListView);
             this.Controls.Add(this.toolBar);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuBar);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuBar;
             this.Name = "MainWindow";
+            this.progListContextMenu.ResumeLayout(false);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.menuBar.ResumeLayout(false);
@@ -350,7 +341,7 @@ namespace DTWrapper.GUI
         #endregion
 
         private System.Windows.Forms.NotifyIcon trayIcon;
-        private System.Windows.Forms.ListView gamesListView;
+        private System.Windows.Forms.ListView progsListView;
         private System.Windows.Forms.ColumnHeader nameColumn;
         private System.Windows.Forms.ColumnHeader exeColumn;
         private System.Windows.Forms.ColumnHeader isoColumn;
@@ -360,10 +351,10 @@ namespace DTWrapper.GUI
         private System.Windows.Forms.ToolStripSeparator menuBarSeparator;
         private System.Windows.Forms.ImageList smallIcons;
         private System.Windows.Forms.ImageList largeIcons;
-        private System.Windows.Forms.ToolStripButton addGameButton;
-        private System.Windows.Forms.ToolStripButton startGameButton;
-        private System.Windows.Forms.ToolStripButton editGameButton;
-        private System.Windows.Forms.ToolStripButton deleteGameButton;
+        private System.Windows.Forms.ToolStripButton addButton;
+        private System.Windows.Forms.ToolStripButton startButton;
+        private System.Windows.Forms.ToolStripButton editButton;
+        private System.Windows.Forms.ToolStripButton deleteButton;
         private System.Windows.Forms.ToolStripDropDownButton listViewDisplayModeDropDown;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem detailsListViewMode;
@@ -371,16 +362,15 @@ namespace DTWrapper.GUI
         private System.Windows.Forms.ToolStripMenuItem smallIconsListViewMode;
         private System.Windows.Forms.ToolStripMenuItem largeIconsListViewMode;
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
-        private System.Windows.Forms.ToolStripMenuItem addGameMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gameMenu;
-        private System.Windows.Forms.ToolStripMenuItem startMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel DTVersion;
         private System.Windows.Forms.ToolStripMenuItem aboutMenu;
         private System.Windows.Forms.ToolStripMenuItem aboutItem;
         private System.Windows.Forms.ToolStripMenuItem optionsMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel selectedDrive;
+        private System.Windows.Forms.ContextMenuStrip progListContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem createShortcutOnDesktopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pinToTaskbarToolStripMenuItem;
     }
 }

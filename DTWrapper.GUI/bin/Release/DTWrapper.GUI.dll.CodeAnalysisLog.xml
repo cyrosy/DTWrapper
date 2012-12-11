@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 11.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="11.0">
+ <Namespaces>
+  <Namespace Name="DTWrapper.GUI">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Si possible, fusionnez les types définis dans 'DTWrapper.GUI' avec un autre espace de noms.</Issue>
+    </Message>
+    <Message Id="GUI" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="85" Level="Error">Corrigez la casse de 'GUI' dans le nom d'espace de noms DTWrapper.GUI et changez-la en 'Gui'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="D:\Documents\Projets\DTWrapper\DTWrapper.GUI\bin\x86\Release\DTWrapper.GUI.dll">
+   <Modules>
+    <Module Name="dtwrapper.gui.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Signez 'DTWrapper.GUI.dll' avec une clé de nom fort.</Issue>
+      </Message>
+      <Message Id="GUI" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="Breaking">
+       <Issue Name="Assembly" Certainty="85" Level="Error">Corrigez la casse de 'GUI' dans le nom d'assembly 'DTWrapper.GUI.dll' et changez-la en 'Gui'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Marquer 'DTWrapper.GUI.dll' avec CLSCompliant(true) car il expose les types visibles de l'extérieur.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithNeutralResourcesLanguage" Category="Microsoft.Performance" CheckId="CA1824" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Warning">Comme un assembly 'DTWrapper.GUI.dll' contient un fichier de ressources .resx, marquez-le avec l'attribut NeutralResourcesLanguage, en spécifiant le langage des ressources au sein de l'assembly. Cela permet d'améliorer les performances de recherche lorsqu'une ressource est extraite pour la première fois.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="DTWrapper.GUI">
+       <Types>
+        <Type Name="AboutWindow" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="AboutWindow.cs" Line="36">Dans la méthode 'AboutWindow.AboutWindow()', appelez System.IDisposable.Dispose sur l'objet 'new Icon(Resources.icon, 64, 64)' avant que toutes les références s'y rapportant ne soient hors de portée.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EditGameWindow" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(DTWrapper.POCO.Game)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Valider les arguments de méthodes publiques" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="60">Dans la méthode visible de l'extérieur 'EditGameWindow.EditGameWindow(Game)', validez le paramètre 'game' avant de l'utiliser.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#saveGame()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="90">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'EditGameWindow.saveGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="102">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'EditGameWindow.saveGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#setOKState(System.Windows.Forms.PictureBox)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="127">Le paramètre 'this' (ou 'Me' dans VB) de 'EditGameWindow.setOKState(PictureBox)' n'est jamais utilisé. Marquez le membre comme static (ou Shared dans VB) ou utilisez 'this'/'Me' dans le corps de la méthode ou au moins un accesseur de propriété, si nécessaire.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#setWarnState(System.Windows.Forms.PictureBox)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="132">Le paramètre 'this' (ou 'Me' dans VB) de 'EditGameWindow.setWarnState(PictureBox)' n'est jamais utilisé. Marquez le membre comme static (ou Shared dans VB) ou utilisez 'this'/'Me' dans le corps de la méthode ou au moins un accesseur de propriété, si nécessaire.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#updateIconPreview()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="EditGameWindow.cs" Line="117">Modifiez 'EditGameWindow.updateIconPreview()' pour intercepter une exception plus spécifique que 'Exception' ou levez de nouveau l'exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MainWindow" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#addGame()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="92">Dans la méthode 'MainWindow.addGame()', appelez System.IDisposable.Dispose sur l'objet 'editGame' avant que toutes les références s'y rapportant ne soient hors de portée.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#deleteSelectedGame()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Int64.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="131">Le comportement de 'long.Parse(string)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.deleteSelectedGame()' par un appel à 'long.Parse(string, IFormatProvider)'. Si le résultat de 'long.Parse(string, IFormatProvider)' est basé sur l'entrée de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est basé sur l'entrée stockée et consultée par le logiciel, comme lorsqu'il est chargé à partir d'un disque ou d'une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="136">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.deleteSelectedGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="140">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.deleteSelectedGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="144">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.deleteSelectedGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="136">Modifiez 'MainWindow.deleteSelectedGame()' pour appeler la surcharge MessageBox.Show qui spécifie MessageBoxOptions, et assurez-vous de définir MessageBoxOptions.RightAlign et MessageBoxOptions.RtlReading si RightToLeft a la valeur RightToLeft.Yes sur le contrôle parent.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#editOptions()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="247">Dans la méthode 'MainWindow.editOptions()', appelez System.IDisposable.Dispose sur l'objet 'options' avant que toutes les références s'y rapportant ne soient hors de portée.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#editSelectedGame()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Int64.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="119">Le comportement de 'long.Parse(string)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.editSelectedGame()' par un appel à 'long.Parse(string, IFormatProvider)'. Si le résultat de 'long.Parse(string, IFormatProvider)' est basé sur l'entrée de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est basé sur l'entrée stockée et consultée par le logiciel, comme lorsqu'il est chargé à partir d'un disque ou d'une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="120">Dans la méthode 'MainWindow.editSelectedGame()', appelez System.IDisposable.Dispose sur l'objet 'editGame' avant que toutes les références s'y rapportant ne soient hors de portée.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#find_DT(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="Ne pas passer de littéraux en paramètres localisés" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="72">La méthode 'MainWindow.find_DT(object, EventArgs)' passe une chaîne littérale en paramètre 'value' d'un appel à 'ToolStripItem.Text.set(string)'. Extrayez à la place la ou les chaînes suivantes d'une table de ressources : "DT ,  ".</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#refreshJeux()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="206">Modifiez 'MainWindow.refreshJeux()' pour intercepter une exception plus spécifique que 'Exception' ou levez de nouveau l'exception.</Issue>
+            </Message>
+            <Message Id="System.Windows.Forms.ListViewItem+ListViewSubItem" TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="ObjectCreation" Certainty="95" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="177">'MainWindow.refreshJeux()' crée une nouvelle instance de 'ListViewItem.ListViewSubItem' qui n'est jamais utilisée. Passez l'instance comme argument à une autre méthode, assignez l'instance à une variable ou supprimez la création de l'objet si elle s'avère inutile.</Issue>
+            </Message>
+            <Message Id="System.Int64.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="163">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="164">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="197">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="198">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="202">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="203">Le comportement de 'long.ToString()' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.refreshJeux()' par un appel à 'long.ToString(IFormatProvider)'. Si le résultat de 'long.ToString(IFormatProvider)' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#showAbout()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="255">Dans la méthode 'MainWindow.showAbout()', appelez System.IDisposable.Dispose sur l'objet 'about' avant que toutes les références s'y rapportant ne soient hors de portée.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#startSelectedGame()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Int64.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="103">Le comportement de 'long.Parse(string)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.startSelectedGame()' par un appel à 'long.Parse(string, IFormatProvider)'. Si le résultat de 'long.Parse(string, IFormatProvider)' est basé sur l'entrée de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est basé sur l'entrée stockée et consultée par le logiciel, comme lorsqu'il est chargé à partir d'un disque ou d'une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="MainWindow.cs" Line="105">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'MainWindow.startSelectedGame()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="OptionsWindow" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#addDrive()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="116">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'OptionsWindow.addDrive()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="122">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'OptionsWindow.addDrive()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="128">Le comportement de 'string.Format(string, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'OptionsWindow.addDrive()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="113">Modifiez 'OptionsWindow.addDrive()' pour appeler la surcharge MessageBox.Show qui spécifie MessageBoxOptions, et assurez-vous de définir MessageBoxOptions.RightAlign et MessageBoxOptions.RtlReading si RightToLeft a la valeur RightToLeft.Yes sur le contrôle parent.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#loadDrives()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.Compare(System.String,System.String)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="90">Le comportement de 'string.Compare(string, string)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'OptionsWindow.loadDrives()' par un appel à 'string.Compare(string, string, StringComparison)'. Si le résultat de 'string.Compare(string, string, StringComparison)' s'affiche au niveau de l'utilisateur, comme lors du tri d'une liste d'éléments pour affichage dans une zone de liste, spécifiez 'StringComparison.CurrentCulture' ou 'StringComparison.CurrentCultureIgnoreCase' comme paramètre 'StringComparison'. Si vous comparez des identificateurs ne respectant pas la casse, comme des chemins d'accès de fichiers, des variables d'environnement ou des valeurs et des clés de Registre, spécifiez 'StringComparison.OrdinalIgnoreCase'. Sinon, si vous comparez des identificateurs respectant la casse, spécifiez 'StringComparison.Ordinal'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#saveOptions()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2012-11-24 08:46:40Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Documents\Projets\DTWrapper\DTWrapper.GUI" File="OptionsWindow.cs" Line="63">Le comportement de 'string.Format(string, object, object, object)' pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans 'OptionsWindow.saveOptions()' par un appel à 'string.Format(IFormatProvider, string, params object[])'. Si le résultat de 'string.Format(IFormatProvider, string, params object[])' s'affiche au niveau de l'utilisateur, spécifiez 'CultureInfo.CurrentCulture' comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Les assemblys doivent porter des noms forts valides</Name>
+   <Description>L'assembly possède un nom fort non valide ou aucun nom fort, ou le nom fort est valide uniquement en raison de la configuration de l'ordinateur. L'assembly ne doit pas être déployé dans cet état. Les causes les plus courantes de ce problème sont les suivantes : 1) Le contenu de l'assembly a été modifié après la signature de l'assembly. 2) Le processus de signature a échoué. 3) La signature de l'assembly a été différée. 4) Il existait une clé de Registre qui permettait la réussite du contrôle (laquelle aurait été impossible dans le cas contraire).</Description>
+   <Resolution Name="NoStrongName">Signez {0} avec une clé de nom fort.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+   <Name>Éviter les espaces de noms comportant peu de types</Name>
+   <Description>Un espace de noms doit généralement comporter plus de cinq types.</Description>
+   <Resolution Name="Default">Si possible, fusionnez les types définis dans '{0}' avec un autre espace de noms.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182130(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Ne pas intercepter des types d'exception générale</Name>
+   <Description>Vous ne devez pas intercepter Exception ou SystemException. L'interception de types d'exceptions génériques peut masquer des problèmes de runtime de la part de l'utilisateur de la bibliothèque et peut compliquer le débogage. Vous devez intercepter uniquement les exceptions que vous pouvez gérer correctement.</Description>
+   <Resolution Name="Default">Modifiez {0} pour intercepter une exception plus spécifique que {1} ou levez de nouveau l'exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806">
+   <Name>N'ignorez pas les résultats des méthodes</Name>
+   <Description>Le résultat de méthodes qui retournent de nouvelles instances de chaînes doit être attribué à une variable et exploité par la suite. Si le résultat d'une méthode créant un objet, tel que String.ToLower(), n'est pas assigné à une variable, l'appel ne sert à rien.</Description>
+   <Resolution Name="ObjectCreation">{0} crée une nouvelle instance de {1} qui n'est jamais utilisée. Passez l'instance comme argument à une autre méthode, assignez l'instance à une variable ou supprimez la création de l'objet si elle s'avère inutile.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182273(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>La casse des identificateurs doit être correcte</Name>
+   <Description>Les identificateurs de type, d'espace de noms et de membre utilisent la casse Pascal. Les identificateurs de paramètre utilisent une casse mixte. Les acronymes à deux lettres au sein de ces identificateurs doivent apparaître en majuscules. Par exemple, utilisez System.IO à la place de System.Io. Les acronymes de trois lettres ou plus ne doivent pas utiliser la casse Pascal. Par exemple, utilisez System.Xml à la place de System.XML. Dans la casse Pascal, la première lettre de chaque mot est en majuscule (par exemple, BackColor). Dans la casse mixte, la première lettre du premier mot est en minuscules et la première lettre de tous les mots suivants, en majuscule (par exemple, backgroundColor). Bien qu'il soit courant que certains acronymes à deux lettres n'apparaissent pas entièrement en majuscules, ils ne devraient pour autant pas être exclus pour cette raison. Par exemple, 'DbConnection' est courant mais incorrect ; utilisez DBConnection à la place. Il peut s'avérer nécessaire d'enfreindre cette règle pour des raisons de compatibilité avec un jeu de symboles non managé existant. Néanmoins, en règle générale, ces symboles ne doivent pas être visibles en dehors de l'assembly qui les utilise.</Description>
+   <Resolution Name="Assembly">Corrigez la casse de '{0}' dans le nom d'assembly {1} et changez-la en '{2}'.</Resolution>
+   <Resolution Name="Namespace">Corrigez la casse de '{0}' dans le nom d'espace de noms {1} et changez-la en '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Marquer les assemblys avec CLSCompliantAttribute</Name>
+   <Description>Les assemblys doivent indiquer explicitement leur conformité CLS à l'aide de l'attribut CLSCompliant. Un assembly ne possédant pas cet attribut n'est pas conforme CLS. Les assemblys, les modules et les types peuvent être conformes CLS même si des parties de l'assembly, du module ou du type ne sont pas conformes CLS. Les règles suivantes s'appliquent : 1) Si l'élément est marqué CLSCompliant, les membres non conformes doivent posséder l'attribut CLSCompliant avec son argument défini à false. 2) Un autre membre conforme CLS comparable doit être fourni pour chaque membre non conforme CLS.</Description>
+   <Resolution Name="Default">Marquer {0} avec CLSCompliant(true) car il expose les types visibles de l'extérieur.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithNeutralResourcesLanguage" Category="Microsoft.Performance" CheckId="CA1824">
+   <Name>Marquer les assemblys avec NeutralResourcesLanguageAttribute</Name>
+   <Description>L'attribut NeutralResourcesLanguage informe le ResourceManager du langage utilisé pour restituer les ressources de la culture neutre d'un assembly. Lors de la recherche de ressources dans la même culture que le langage des ressources neutre, le ResourceManager utilise automatiquement les ressources situées dans l'assembly principal, au lieu de chercher un assembly satellite ayant la culture de l'interface utilisateur actuelle pour le thread actif. Cela permet d'améliorer les performances de recherche de la première ressource chargée et de réduire votre jeu de travail.</Description>
+   <Resolution Name="Default">Comme un assembly {0} contient un fichier de ressources .resx, marquez-le avec l'attribut NeutralResourcesLanguage, en spécifiant le langage des ressources au sein de l'assembly. Cela permet d'améliorer les performances de recherche lorsqu'une ressource est extraite pour la première fois.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb385967(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+   <Name>Marquez les membres comme static</Name>
+   <Description>Les méthodes qui n'accèdent pas aux données d'instance ou appellent des méthodes d'instance peuvent être marquées comme static (Shared dans VB). Ceci fait, le compilateur émet des sites d'appel non virtuels vers ces membres afin d'empêcher toute vérification au moment de l'exécution pour chaque appel garantissant que le pointeur d'objet actuel n'est pas null. Cette opération peut se traduire par des gains de performances pour le code dépendant des performances. Dans certains cas, l'impossibilité d'accéder à l'instance d'objet actuelle pose un problème d'exactitude.</Description>
+   <Resolution Name="Default">Le paramètre 'this' (ou 'Me' dans VB) de {0} n'est jamais utilisé. Marquez le membre comme static (ou Shared dans VB) ou utilisez 'this'/'Me' dans le corps de la méthode ou au moins un accesseur de propriété, si nécessaire.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245046(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Ne pas passer de littéraux en paramètres localisés" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Ne pas passer de littéraux en paramètres localisés</Name>
+   <Description>Les chaînes littérales intégrées au code source sont difficiles à localiser. Évitez de passer des chaînes littérales en arguments dans des cas où une chaîne localisée est généralement attendue.</Description>
+   <Resolution Name="KnownValue">La méthode {0} passe une chaîne littérale en paramètre '{1}' d'un appel à {2}. Extrayez à la place la ou les chaînes suivantes d'une table de ressources : {3}.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Spécifier IFormatProvider</Name>
+   <Description>S'il existe une surcharge qui accepte un argument IFormatProvider, elle doit être systématiquement appelée au profit d'une surcharge qui n'accepte pas cet argument. Certaines méthodes dans le Common Language Runtime convertissent une valeur vers ou depuis une représentation sous forme de chaîne et acceptent un paramètre de chaîne qui contient un ou plusieurs caractères (appelés spécificateurs de format), lesquels indiquent comment la valeur doit être convertie. Si la signification du spécificateur de format varie en fonction de la culture, un objet de mise en forme fournit les caractères réels utilisés dans la représentation sous forme de chaîne. Dans les scénarios où le comportement de tri et de comparaison ne doit jamais changer entre les cultures, spécifiez CultureInfo.InvariantCulture ; sinon, spécifiez CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternate">Le comportement de {0} pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans {1} par un appel à {2}. Si le résultat de {2} est basé sur l'entrée de l'utilisateur, spécifiez {3} comme paramètre 'IFormatProvider'. Sinon, si le résultat est basé sur l'entrée stockée et consultée par le logiciel, comme lorsqu'il est chargé à partir d'un disque ou d'une base de données, spécifiez {4}.</Resolution>
+   <Resolution Name="IFormatProviderAlternateString">Le comportement de {0} pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans {1} par un appel à {2}. Si le résultat de {2} s'affiche au niveau de l'utilisateur, spécifiez {3} comme paramètre 'IFormatProvider'. Sinon, si le résultat est stocké et consulté par le logiciel, comme lorsqu'il est enregistré sur disque ou dans une base de données, spécifiez {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300">
+   <Name>Spécifier MessageBoxOptions</Name>
+   <Description>Pour garantir l'exécution sur les systèmes de droite à gauche, tous les appels à MessageBox.Show doivent utiliser la surcharge qui spécifie MessageBoxOptions en tant qu'argument. Les programmes doivent détecter s'ils fonctionnent sur un système de droite à gauche au moment de l'exécution et transmettre la valeur MessageBoxOptions appropriée pour offrir un affichage correct.</Description>
+   <Resolution Name="Default">Modifiez {0} pour appeler la surcharge MessageBox.Show qui spécifie MessageBoxOptions, et assurez-vous de définir MessageBoxOptions.RightAlign et MessageBoxOptions.RtlReading si RightToLeft a la valeur RightToLeft.Yes sur le contrôle parent.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182191(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307">
+   <Name>Spécifier StringComparison</Name>
+   <Description>S'il existe une surcharge qui accepte un argument StringComparison, elle doit être toujours appelée à la place d'une surcharge qui n'accepte pas ce type d'argument.</Description>
+   <Resolution Name="Default">Le comportement de {0} pouvant varier en fonction des paramètres régionaux de l'utilisateur actuel, remplacez cet appel dans {1} par un appel à {2}. Si le résultat de {2} s'affiche au niveau de l'utilisateur, comme lors du tri d'une liste d'éléments pour affichage dans une zone de liste, spécifiez 'StringComparison.CurrentCulture' ou 'StringComparison.CurrentCultureIgnoreCase' comme paramètre 'StringComparison'. Si vous comparez des identificateurs ne respectant pas la casse, comme des chemins d'accès de fichiers, des variables d'environnement ou des valeurs et des clés de Registre, spécifiez 'StringComparison.OrdinalIgnoreCase'. Sinon, si vous comparez des identificateurs respectant la casse, spécifiez 'StringComparison.Ordinal'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386080(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Supprimer les objets avant la mise hors de portée" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Supprimer les objets avant la mise hors de portée</Name>
+   <Description>Si un objet supprimable n'est pas supprimé explicitement avant que toutes les références s'y rapportant ne soient hors de portée, cet objet sera supprimé à un moment indéterminé lorsque le Garbage Collector exécutera le finaliseur sur l'objet. Il est préférable que l'objet soit supprimé explicitement, car un événement exceptionnel peut se produire, empêchant l'exécution du finaliseur de l'objet.</Description>
+   <Resolution Name="NonExceptionEdge">Dans la méthode {0}, appelez System.IDisposable.Dispose sur l'objet {1} avant que toutes les références s'y rapportant ne soient hors de portée.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Valider les arguments de méthodes publiques" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Valider les arguments de méthodes publiques</Name>
+   <Description>Tous les arguments de référence passés en méthodes visibles de l'extérieur doivent être vérifiés pour voir s'ils ont la valeur null (Nothing dans VB). Le cas échéant, levez une System.ArgumentNullExcepti lorsqu'un argument a la valeur null.</Description>
+   <Resolution Name="Default">Dans la méthode visible de l'extérieur {0}, validez le paramètre '{1}' avant de l'utiliser.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Catégorie</String>
+  <String Key="Certainty">Certitude</String>
+  <String Key="CollapseAll">Réduire tout</String>
+  <String Key="CheckId">ID de contrôle</String>
+  <String Key="Error">Erreur</String>
+  <String Key="Errors">erreur(s)</String>
+  <String Key="ExpandAll">Développer tout</String>
+  <String Key="Help">Aide</String>
+  <String Key="Line">Ligne</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Emplacement non stocké dans le fichier Pdb]</String>
+  <String Key="Project">Projet</String>
+  <String Key="Resolution">Résolution</String>
+  <String Key="Rule">Règle</String>
+  <String Key="RuleFile">Fichier de règles</String>
+  <String Key="RuleDescription">Description de la règle</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">État</String>
+  <String Key="Target">Cible</String>
+  <String Key="Warning">Avertissement</String>
+  <String Key="Warnings">avertissement(s)</String>
+  <String Key="ReportTitle">Rapport d'analyse du code</String>
+ </Localized>
+ <Exceptions>
+  <Exception Keyword="CA0063" Kind="Engine" TreatAsWarning="True">
+   <Type>Microsoft.FxCop.Sdk.FxCopException</Type>
+   <ExceptionMessage>* Impossible de charger le fichier d'ensemble de règles 'MinimumRecommendedRules.ruleset' ou l'un de ses fichiers d'ensemble de règles dépendants. </ExceptionMessage>
+  </Exception>
+ </Exceptions>
+</FxCopReport>
