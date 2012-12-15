@@ -17,7 +17,7 @@ namespace DTWrapper.BDD
         private int _currentId = 0;
         private List<Prog> _progs = new List<Prog>();
 
-        public List<Prog> Progs { get { return (from p in _progs select p).ToList(); } }
+        public List<Prog> Progs { get { if (_progs.Count < 1) Reload(); return (from p in _progs select p).ToList(); } }
         public int CurrentID { get { return _currentId; } }
 
         public ProgList()

@@ -52,9 +52,6 @@ namespace DTWrapper.GUI
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.isoColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.progListContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.createShortcutOnDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pinToTaskbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.largeIcons = new System.Windows.Forms.ImageList(this.components);
             this.smallIcons = new System.Windows.Forms.ImageList(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -78,8 +75,8 @@ namespace DTWrapper.GUI
             this.listListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.smallIconsListViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.largeIconsListViewMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.shortcutButton = new System.Windows.Forms.ToolStripButton();
             this.menuBarSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.progListContextMenu.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.menuBar.SuspendLayout();
             this.toolBar.SuspendLayout();
@@ -91,12 +88,11 @@ namespace DTWrapper.GUI
             // 
             // progsListView
             // 
-            resources.ApplyResources(this.progsListView, "progsListView");
             this.progsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.exeColumn,
             this.isoColumn});
-            this.progsListView.ContextMenuStrip = this.progListContextMenu;
+            resources.ApplyResources(this.progsListView, "progsListView");
             this.progsListView.FullRowSelect = true;
             this.progsListView.GridLines = true;
             this.progsListView.HideSelection = false;
@@ -125,26 +121,6 @@ namespace DTWrapper.GUI
             this.isoColumn.Tag = "Iso";
             resources.ApplyResources(this.isoColumn, "isoColumn");
             // 
-            // progListContextMenu
-            // 
-            resources.ApplyResources(this.progListContextMenu, "progListContextMenu");
-            this.progListContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createShortcutOnDesktopToolStripMenuItem,
-            this.pinToTaskbarToolStripMenuItem});
-            this.progListContextMenu.Name = "progListContextMenu";
-            // 
-            // createShortcutOnDesktopToolStripMenuItem
-            // 
-            resources.ApplyResources(this.createShortcutOnDesktopToolStripMenuItem, "createShortcutOnDesktopToolStripMenuItem");
-            this.createShortcutOnDesktopToolStripMenuItem.Name = "createShortcutOnDesktopToolStripMenuItem";
-            this.createShortcutOnDesktopToolStripMenuItem.Click += new System.EventHandler(this.createShortcutOnDesktopToolStripMenuItem_Click);
-            // 
-            // pinToTaskbarToolStripMenuItem
-            // 
-            resources.ApplyResources(this.pinToTaskbarToolStripMenuItem, "pinToTaskbarToolStripMenuItem");
-            this.pinToTaskbarToolStripMenuItem.Name = "pinToTaskbarToolStripMenuItem";
-            this.pinToTaskbarToolStripMenuItem.Click += new System.EventHandler(this.pinToTaskbarToolStripMenuItem_Click);
-            // 
             // largeIcons
             // 
             this.largeIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -159,124 +135,124 @@ namespace DTWrapper.GUI
             // 
             // statusBar
             // 
-            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DTVersion,
             this.selectedDrive});
+            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             this.statusBar.SizingGrip = false;
             // 
             // DTVersion
             // 
-            resources.ApplyResources(this.DTVersion, "DTVersion");
             this.DTVersion.Name = "DTVersion";
+            resources.ApplyResources(this.DTVersion, "DTVersion");
             // 
             // selectedDrive
             // 
-            resources.ApplyResources(this.selectedDrive, "selectedDrive");
             this.selectedDrive.Name = "selectedDrive";
+            resources.ApplyResources(this.selectedDrive, "selectedDrive");
             // 
             // menuBar
             // 
-            resources.ApplyResources(this.menuBar, "menuBar");
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.aboutMenu});
+            resources.ApplyResources(this.menuBar, "menuBar");
             this.menuBar.Name = "menuBar";
             // 
             // fileMenu
             // 
-            resources.ApplyResources(this.fileMenu, "fileMenu");
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMenuItem,
             this.optionsMenuItem,
             this.exitMenuItem});
             this.fileMenu.Name = "fileMenu";
+            resources.ApplyResources(this.fileMenu, "fileMenu");
             // 
             // addMenuItem
             // 
-            resources.ApplyResources(this.addMenuItem, "addMenuItem");
             this.addMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.add;
             this.addMenuItem.Name = "addMenuItem";
+            resources.ApplyResources(this.addMenuItem, "addMenuItem");
             this.addMenuItem.Click += new System.EventHandler(this.addMenuItem_Click);
             // 
             // optionsMenuItem
             // 
-            resources.ApplyResources(this.optionsMenuItem, "optionsMenuItem");
             this.optionsMenuItem.Name = "optionsMenuItem";
+            resources.ApplyResources(this.optionsMenuItem, "optionsMenuItem");
             this.optionsMenuItem.Click += new System.EventHandler(this.optionsMenuItem_Click);
             // 
             // exitMenuItem
             // 
-            resources.ApplyResources(this.exitMenuItem, "exitMenuItem");
             this.exitMenuItem.Name = "exitMenuItem";
+            resources.ApplyResources(this.exitMenuItem, "exitMenuItem");
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // aboutMenu
             // 
-            resources.ApplyResources(this.aboutMenu, "aboutMenu");
             this.aboutMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutItem});
             this.aboutMenu.Name = "aboutMenu";
+            resources.ApplyResources(this.aboutMenu, "aboutMenu");
             // 
             // aboutItem
             // 
-            resources.ApplyResources(this.aboutItem, "aboutItem");
             this.aboutItem.Name = "aboutItem";
+            resources.ApplyResources(this.aboutItem, "aboutItem");
             this.aboutItem.Click += new System.EventHandler(this.aboutItem_Click);
             // 
             // toolBar
             // 
-            resources.ApplyResources(this.toolBar, "toolBar");
             this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addButton,
             this.toolStripSeparator1,
             this.startButton,
             this.editButton,
             this.deleteButton,
-            this.listViewDisplayModeDropDown});
+            this.listViewDisplayModeDropDown,
+            this.shortcutButton});
+            resources.ApplyResources(this.toolBar, "toolBar");
             this.toolBar.Name = "toolBar";
             // 
             // addButton
             // 
-            resources.ApplyResources(this.addButton, "addButton");
             this.addButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.addButton.Image = global::DTWrapper.GUI.Properties.Resources.add;
+            resources.ApplyResources(this.addButton, "addButton");
             this.addButton.Name = "addButton";
             this.addButton.Click += new System.EventHandler(this.addGameButton_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // startButton
             // 
-            resources.ApplyResources(this.startButton, "startButton");
             this.startButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.startButton.Image = global::DTWrapper.GUI.Properties.Resources.play;
+            resources.ApplyResources(this.startButton, "startButton");
             this.startButton.Name = "startButton";
             this.startButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
             // editButton
             // 
-            resources.ApplyResources(this.editButton, "editButton");
             this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.editButton.Image = global::DTWrapper.GUI.Properties.Resources.edit;
+            resources.ApplyResources(this.editButton, "editButton");
             this.editButton.Name = "editButton";
             this.editButton.Click += new System.EventHandler(this.editGameButton_Click);
             // 
             // deleteButton
             // 
-            resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.deleteButton.Image = global::DTWrapper.GUI.Properties.Resources.del;
+            resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Click += new System.EventHandler(this.deleteGameButton_Click);
             // 
             // listViewDisplayModeDropDown
             // 
-            resources.ApplyResources(this.listViewDisplayModeDropDown, "listViewDisplayModeDropDown");
             this.listViewDisplayModeDropDown.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.listViewDisplayModeDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.listViewDisplayModeDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -285,36 +261,45 @@ namespace DTWrapper.GUI
             this.smallIconsListViewMode,
             this.largeIconsListViewMode});
             this.listViewDisplayModeDropDown.Image = global::DTWrapper.GUI.Properties.Resources.zoom;
+            resources.ApplyResources(this.listViewDisplayModeDropDown, "listViewDisplayModeDropDown");
             this.listViewDisplayModeDropDown.Name = "listViewDisplayModeDropDown";
             // 
             // detailsListViewMode
             // 
-            resources.ApplyResources(this.detailsListViewMode, "detailsListViewMode");
             this.detailsListViewMode.Name = "detailsListViewMode";
+            resources.ApplyResources(this.detailsListViewMode, "detailsListViewMode");
             this.detailsListViewMode.Click += new System.EventHandler(this.detailsListViewMode_Click);
             // 
             // listListViewMode
             // 
-            resources.ApplyResources(this.listListViewMode, "listListViewMode");
             this.listListViewMode.Name = "listListViewMode";
+            resources.ApplyResources(this.listListViewMode, "listListViewMode");
             this.listListViewMode.Click += new System.EventHandler(this.listListViewMode_Click);
             // 
             // smallIconsListViewMode
             // 
-            resources.ApplyResources(this.smallIconsListViewMode, "smallIconsListViewMode");
             this.smallIconsListViewMode.Name = "smallIconsListViewMode";
+            resources.ApplyResources(this.smallIconsListViewMode, "smallIconsListViewMode");
             this.smallIconsListViewMode.Click += new System.EventHandler(this.smallIconsListViewMode_Click);
             // 
             // largeIconsListViewMode
             // 
-            resources.ApplyResources(this.largeIconsListViewMode, "largeIconsListViewMode");
             this.largeIconsListViewMode.Name = "largeIconsListViewMode";
+            resources.ApplyResources(this.largeIconsListViewMode, "largeIconsListViewMode");
             this.largeIconsListViewMode.Click += new System.EventHandler(this.largeIconsListViewMode_Click);
+            // 
+            // shortcutButton
+            // 
+            this.shortcutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.shortcutButton.Image = global::DTWrapper.GUI.Properties.Resources.shortcut;
+            resources.ApplyResources(this.shortcutButton, "shortcutButton");
+            this.shortcutButton.Name = "shortcutButton";
+            this.shortcutButton.Click += new System.EventHandler(this.shortcutButton_Click);
             // 
             // menuBarSeparator
             // 
-            resources.ApplyResources(this.menuBarSeparator, "menuBarSeparator");
             this.menuBarSeparator.Name = "menuBarSeparator";
+            resources.ApplyResources(this.menuBarSeparator, "menuBarSeparator");
             // 
             // MainWindow
             // 
@@ -326,7 +311,6 @@ namespace DTWrapper.GUI
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuBar;
             this.Name = "MainWindow";
-            this.progListContextMenu.ResumeLayout(false);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.menuBar.ResumeLayout(false);
@@ -369,8 +353,6 @@ namespace DTWrapper.GUI
         private System.Windows.Forms.ToolStripMenuItem aboutItem;
         private System.Windows.Forms.ToolStripMenuItem optionsMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel selectedDrive;
-        private System.Windows.Forms.ContextMenuStrip progListContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem createShortcutOnDesktopToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pinToTaskbarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton shortcutButton;
     }
 }

@@ -60,9 +60,10 @@ namespace DTWrapper.GUI
                 _isNew = false;
                 this.nameField.Text = _prog.Name;
                 this.pathField.Text = _prog.Path;
+                this.argsField.Text = _prog.Args;
                 this.diskImageField.Text = _prog.DiskImage;
                 this.iconField.Text = _prog.Icon;
-                this.jumpListBox.CheckState = _prog.InJumpList ? CheckState.Checked : CheckState.Unchecked;
+                this.jumpListBox.Checked = _prog.InJumpList;
 
                 updateIconPreview();
             }
@@ -140,35 +141,19 @@ namespace DTWrapper.GUI
         private bool checkGame()
         {
             _error = "";
-            bool valid = true;
 
-            if (!checkName())
-            {
-                valid = false;
-                _error += Locale.GetString("Error.InvalidName") + Environment.NewLine;
-            }
+            if (!checkName()) _error += Locale.GetString("Error.InvalidName") + Environment.NewLine;
 
-            if (!checkExe())
-            {
-                valid = false;
-                _error += Locale.GetString("Error.InvalidEXE") + Environment.NewLine;
-            }
+            if (!checkExe()) _error += Locale.GetString("Error.InvalidEXE") + Environment.NewLine;
 
-            if (!checkIso())
-            {
-                valid = false;
-                _error += Locale.GetString("Error.InvalidISO") + Environment.NewLine;
-            }
+            if (!checkIso()) _error += Locale.GetString("Error.InvalidISO") + Environment.NewLine;
 
-            if (!checkIcon())
-            {
-                valid = false;
-                _error += Locale.GetString("Error.InvalidIcon") + Environment.NewLine;
-            }
+            if (!checkIcon()) _error += Locale.GetString("Error.InvalidIcon") + Environment.NewLine;
 
-            this._prog.InJumpList = (this.jumpListBox.CheckState == CheckState.Checked);
+            this._prog.Args = this.argsField.Text;
+            this._prog.InJumpList = this.jumpListBox.Checked;
 
-            return valid;
+            return this._prog.IsOK();
         }
 
         private bool checkName()

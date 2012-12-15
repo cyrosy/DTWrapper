@@ -72,6 +72,8 @@ namespace DTWrapper.GUI
             this.iconPreview = new System.Windows.Forms.PictureBox();
             this.jumpListLabel = new System.Windows.Forms.Label();
             this.jumpListBox = new System.Windows.Forms.CheckBox();
+            this.argsLabel = new System.Windows.Forms.Label();
+            this.argsField = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonsTable = new System.Windows.Forms.TableLayoutPanel();
             this.saveButton = new System.Windows.Forms.Button();
@@ -216,13 +218,15 @@ namespace DTWrapper.GUI
             // advancedOptions
             // 
             resources.ApplyResources(this.advancedOptions, "advancedOptions");
-            this.advancedOptions.Controls.Add(this.iconField, 0, 2);
-            this.advancedOptions.Controls.Add(this.iconLabel, 0, 1);
-            this.advancedOptions.Controls.Add(this.iconButton, 2, 2);
-            this.advancedOptions.Controls.Add(this.iconLabelState, 1, 2);
-            this.advancedOptions.Controls.Add(this.iconPreview, 0, 3);
+            this.advancedOptions.Controls.Add(this.iconField, 0, 4);
+            this.advancedOptions.Controls.Add(this.iconLabel, 0, 3);
+            this.advancedOptions.Controls.Add(this.iconButton, 2, 4);
+            this.advancedOptions.Controls.Add(this.iconLabelState, 1, 4);
+            this.advancedOptions.Controls.Add(this.iconPreview, 0, 5);
             this.advancedOptions.Controls.Add(this.jumpListLabel, 0, 0);
             this.advancedOptions.Controls.Add(this.jumpListBox, 2, 0);
+            this.advancedOptions.Controls.Add(this.argsLabel, 0, 1);
+            this.advancedOptions.Controls.Add(this.argsField, 0, 2);
             this.advancedOptions.Name = "advancedOptions";
             // 
             // iconField
@@ -265,6 +269,16 @@ namespace DTWrapper.GUI
             resources.ApplyResources(this.jumpListBox, "jumpListBox");
             this.jumpListBox.Name = "jumpListBox";
             this.jumpListBox.UseVisualStyleBackColor = true;
+            // 
+            // argsLabel
+            // 
+            resources.ApplyResources(this.argsLabel, "argsLabel");
+            this.argsLabel.Name = "argsLabel";
+            // 
+            // argsField
+            // 
+            resources.ApplyResources(this.argsField, "argsField");
+            this.argsField.Name = "argsField";
             // 
             // flowLayoutPanel1
             // 
@@ -356,5 +370,7 @@ namespace DTWrapper.GUI
         private System.Windows.Forms.PictureBox iconLabelState;
         private System.Windows.Forms.Label jumpListLabel;
         private System.Windows.Forms.CheckBox jumpListBox;
+        private System.Windows.Forms.Label argsLabel;
+        private System.Windows.Forms.TextBox argsField;
     }
 }

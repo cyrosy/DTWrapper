@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -43,8 +44,9 @@ namespace DTWrapper.GUI
         {
             InitializeComponent();
             this.Load += new EventHandler(findDT);
+            this.Shown += MainWindow_Shown;
             refreshWindow();
-
+            
             _options.Reload();
 
             switch (_options.ListView)
@@ -62,6 +64,11 @@ namespace DTWrapper.GUI
                     detailsListViewMode_Click(null, null);
                     break;
             }
+        }
+
+        void MainWindow_Shown(object sender, EventArgs e)
+        {
+            JumpListHelper.Update();
         }
 
         #region Actions
@@ -162,6 +169,7 @@ namespace DTWrapper.GUI
                 EditProgWindow editGame = new EditProgWindow(progList, Int32.Parse(progsListView.SelectedItems[0].Name));
                 editGame.ShowDialog(this);
             }
+            JumpListHelper.Update();
             refreshWindow();
         }
 
@@ -187,6 +195,15 @@ namespace DTWrapper.GUI
                 }
             }
             refreshWindow();
+        }
+
+        private void createShortcutSelectedProg()
+        {
+            if (progsListView.SelectedItems.Count == 1)
+            {
+                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
+                ShortcutHelper.createShortcut(prog);
+            }
         }
 
         private void refreshProgs()
@@ -255,7 +272,7 @@ namespace DTWrapper.GUI
             nameColumn.AutoResize(resizeStyle);
             exeColumn.AutoResize(resizeStyle);
             isoColumn.AutoResize(resizeStyle);
-            JumpListHelper.Update();
+            
             refreshButtonsState();
         }
 
@@ -270,14 +287,14 @@ namespace DTWrapper.GUI
                 }
                 this.editButton.Enabled = true;
                 this.deleteButton.Enabled = true;
-                this.progListContextMenu.Enabled = true;
+                this.shortcutButton.Enabled = true;
             }
             else
             {
                 this.startButton.Enabled = false;
                 this.editButton.Enabled = false;
                 this.deleteButton.Enabled = false;
-                this.progListContextMenu.Enabled = false;
+                this.shortcutButton.Enabled = false;
             }
         }
 
@@ -357,6 +374,11 @@ namespace DTWrapper.GUI
             deleteSelectedProg();
         }
 
+        private void shortcutButton_Click(object sender, EventArgs e)
+        {
+            createShortcutSelectedProg();
+        }
+
         private void detailsListViewMode_Click(object sender, EventArgs e)
         {
             this.progsListView.View = View.Details;
@@ -395,24 +417,5 @@ namespace DTWrapper.GUI
         }
 
         #endregion
-
-        private void createShortcutOnDesktopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (progsListView.SelectedItems.Count == 1)
-            {
-                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
-                ShortcutHelper.createShortcut(prog);
-            }
-        }
-
-        private void pinToTaskbarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (progsListView.SelectedItems.Count == 1)
-            {
-                Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
-                prog.InJumpList = true;
-                JumpListHelper.Update();
-            }
-        }
     }
 }

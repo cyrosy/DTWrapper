@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using DTWrapper.BDD;
+
 namespace DTWrapper.WPF
 {
     /// <summary>
@@ -23,6 +26,12 @@ namespace DTWrapper.WPF
         public MainWindow()
         {
             InitializeComponent();
+            LoadProgs();
+        }
+
+        private void LoadProgs()
+        {
+
         }
 
         private void viewButton_Click(object sender, RoutedEventArgs e)

@@ -89,7 +89,16 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DTWrapper.BDD\DTWrapper.BDD.csproj">
+      <Project>{de1b992a-1cee-4d73-b75f-87a01bc07101}</Project>
+      <Name>DTWrapper.BDD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTWrapper.Helpers\DTWrapper.Helpers.csproj">
+      <Project>{c739809e-ac34-4ede-bdd4-da9a308a1a04}</Project>
+      <Name>DTWrapper.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\add.png" />
     <Resource Include="Resources\del.png" />

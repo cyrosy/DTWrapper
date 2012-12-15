@@ -184,10 +184,6 @@
       <Project>{C739809E-AC34-4EDE-BDD4-DA9A308A1A04}</Project>
       <Name>DTWrapper.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTWrapper.WPF\DTWrapper.WPF.csproj">
-      <Project>{aa0eabdd-9f41-4b74-920c-1889e32615e6}</Project>
-      <Name>DTWrapper.WPF</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Launcher.fr.resx">
