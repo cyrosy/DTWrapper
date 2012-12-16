@@ -127,7 +127,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>316, 3</value>
+    <value>306, 3</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 24</value>
@@ -154,13 +154,13 @@
     <value>Bottom</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 242</value>
+    <value>0, 231</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>394, 30</value>
+    <value>384, 30</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -229,7 +229,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="programName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 18</value>
+    <value>294, 18</value>
   </data>
   <data name="programName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -265,13 +265,13 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="programVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 13</value>
+    <value>294, 13</value>
   </data>
   <data name="programVersion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="programVersion.Text" xml:space="preserve">
-    <value>v0.5</value>
+    <value>v1.0.0</value>
   </data>
   <data name="programVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -301,7 +301,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="programLicence.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 13</value>
+    <value>294, 13</value>
   </data>
   <data name="programLicence.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -328,7 +328,7 @@
     <value>Fill</value>
   </data>
   <data name="licenceText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 87</value>
+    <value>3, 87</value>
   </data>
   <data name="licenceText.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -337,7 +337,7 @@
     <value>Both</value>
   </data>
   <data name="licenceText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 152</value>
+    <value>378, 152</value>
   </data>
   <data name="licenceText.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -364,7 +364,7 @@
     <value>5</value>
   </data>
   <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>394, 242</value>
+    <value>384, 231</value>
   </data>
   <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -382,7 +382,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="programIcon" Row="0" RowSpan="4" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="programName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="programVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="programLicence" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="licenceText" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="programIcon" Row="0" RowSpan="4" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="programName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="programVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="programLicence" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="licenceText" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -397,7 +397,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>394, 272</value>
+    <value>384, 261</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

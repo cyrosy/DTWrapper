@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="trayIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="trayIcon.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
   <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAgAAAAAAAEAIABbyAAAhgAAAICAAAABACAAKAgBAOHIAABgYAAAAQAgAKiUAAAJ0QEAQEAAAAEA
@@ -3340,9 +3340,9 @@
   <data name="progsListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <metadata name="largeIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="largeIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>529, 17</value>
-  </metadata>
+  </data>
   <data name="largeIcons.ImageSize" type="System.Drawing.Size, System.Drawing">
     <value>32, 32</value>
   </data>
@@ -3352,9 +3352,9 @@
   <data name="progsListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>584, 291</value>
   </data>
-  <metadata name="smallIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="smallIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>419, 17</value>
-  </metadata>
+  </data>
   <data name="smallIcons.ImageSize" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
   </data>
@@ -3373,9 +3373,9 @@
   <data name="&gt;&gt;progsListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>112, 17</value>
-  </metadata>
+  </data>
   <data name="statusBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 340</value>
   </data>
@@ -3409,9 +3409,9 @@
   <data name="selectedDrive.Text" xml:space="preserve">
     <value>Drive</value>
   </data>
-  <metadata name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>228, 17</value>
-  </metadata>
+  </data>
   <data name="menuBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -3475,9 +3475,9 @@
   <data name="aboutItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
-  <metadata name="toolBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="toolBar.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>328, 17</value>
-  </metadata>
+  </data>
   <data name="addButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -3533,7 +3533,7 @@
     <value>23, 22</value>
   </data>
   <data name="shortcutButton.Text" xml:space="preserve">
-    <value>Shortcut</value>
+    <value>Create shortcut on Desktop</value>
   </data>
   <data name="toolBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
@@ -3583,12 +3583,12 @@
   <data name="menuBarSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 25</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
     <value>54</value>
-  </metadata>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>584, 362</value>
   </data>
@@ -6955,5 +6955,47 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DT.NotFound" xml:space="preserve">
+    <value>Daemon Tools not found</value>
+  </data>
+  <data name="DT.Searching" xml:space="preserve">
+    <value>Looking for Daemon Tools installation  ...</value>
+  </data>
+  <data name="Error.InvalidExe" xml:space="preserve">
+    <value>Invalid Executable</value>
+  </data>
+  <data name="Error.InvalidIcon" xml:space="preserve">
+    <value>Invalid icon</value>
+  </data>
+  <data name="Error.InvalidIso" xml:space="preserve">
+    <value>Invalid disk image</value>
+  </data>
+  <data name="Prog.AskDelete.Message" xml:space="preserve">
+    <value>Do you really want to delete the program "{0}" ?</value>
+  </data>
+  <data name="Prog.AskDelete.Title" xml:space="preserve">
+    <value>Delete a program</value>
+  </data>
+  <data name="Prog.Deleted" xml:space="preserve">
+    <value>Program "{0}" deleted</value>
+  </data>
+  <data name="Prog.Mounting" xml:space="preserve">
+    <value>Disk image "{0}" mounting ...</value>
+  </data>
+  <data name="Prog.NotDeleted" xml:space="preserve">
+    <value>Program "{0}" not deleted</value>
+  </data>
+  <data name="Prog.NotFound" xml:space="preserve">
+    <value>Program "{0}" not found</value>
+  </data>
+  <data name="Prog.Preparing" xml:space="preserve">
+    <value>Preparing to launch ...</value>
+  </data>
+  <data name="Prog.Starting" xml:space="preserve">
+    <value>Starting "{0}" ...</value>
+  </data>
+  <data name="Prog.Unmounting" xml:space="preserve">
+    <value>Disk image "{0}" unmounting ...</value>
   </data>
 </root>

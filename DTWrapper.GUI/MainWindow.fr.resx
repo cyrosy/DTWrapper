@@ -3329,14 +3329,8 @@
   <data name="createShortcutOnDesktopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
-  <data name="createShortcutOnDesktopToolStripMenuItem.Text" xml:space="preserve">
-    <value>Créer un raccourci sur le Bureau</value>
-  </data>
   <data name="pinToTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
-  </data>
-  <data name="pinToTaskbarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Epingler à la Barre des Tâches</value>
   </data>
   <data name="progListContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 48</value>
@@ -6653,5 +6647,17 @@
   </data>
   <data name="Prog.Unmounting" xml:space="preserve">
     <value>Image "{0}" en cours de démontage ...</value>
+  </data>
+  <data name="aboutMenu.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="DTVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="optionsMenuItem.Text" xml:space="preserve">
+    <value>&amp;Options</value>
+  </data>
+  <data name="shortcutButton.Text" xml:space="preserve">
+    <value>Créer un raccourci sur le bureau</value>
   </data>
 </root>

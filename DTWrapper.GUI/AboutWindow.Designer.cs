@@ -79,7 +79,7 @@ namespace DTWrapper.GUI
             this.tableLayoutPanel2.Controls.Add(this.programName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.programVersion, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.programLicence, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.licenceText, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.licenceText, 0, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
             // programIcon
@@ -106,6 +106,7 @@ namespace DTWrapper.GUI
             // 
             // licenceText
             // 
+            this.tableLayoutPanel2.SetColumnSpan(this.licenceText, 2);
             resources.ApplyResources(this.licenceText, "licenceText");
             this.licenceText.Name = "licenceText";
             this.licenceText.ReadOnly = true;

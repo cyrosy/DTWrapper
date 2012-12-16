@@ -88,7 +88,7 @@ namespace DTWrapper.GUI
             {
                 this.DTVersion.Text = "DT " + DT.Type.ToString() + " " + DT.Version;
                 LogHelper.WriteLine(this.DTVersion.Text, LogHelper.MessageType.INFO);
-                if (!_options.FileExists() || !_options.Reload() || !_options.VirtualDrive.IsValid)
+                if (!_options.Reload() || !_options.VirtualDrive.IsValid)
                 {
                     info.Close();
                     editOptions();
@@ -112,6 +112,7 @@ namespace DTWrapper.GUI
         {
             EditProgWindow editProg = new EditProgWindow(progList);
             editProg.ShowDialog(this);
+            JumpListHelper.Update();
             refreshWindow();
         }
 
@@ -194,6 +195,7 @@ namespace DTWrapper.GUI
                     }
                 }
             }
+            JumpListHelper.Update();
             refreshWindow();
         }
 

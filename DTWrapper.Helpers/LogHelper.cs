@@ -31,7 +31,7 @@ namespace DTWrapper.Helpers
     public class LogHelper
     {
         private static readonly int logsToKeep = 10;
-        private static readonly string Folder = "Logs";
+        private static readonly string Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper", "Logs");
         private static string Filename = "";
 
         private static ResourceManager Locale = new ResourceManager("DTWrapper.Helpers.LogHelper", typeof(LogHelper).Assembly);

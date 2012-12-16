@@ -135,4 +135,7 @@
   <data name="DriveSearching" xml:space="preserve">
     <value>Recherche de lecteurs virtuels ...</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
 </root>

@@ -13,38 +13,32 @@ namespace DTWrapper.BDD
     [Serializable]
     public class Options
     {
-        private static string _filename = "DTWrapper.conf";
+        private static readonly string _directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
+        private static readonly string _filename = "DTWrapper.conf";
+
         private VirtualDriveType _virtualDriveType = VirtualDriveType.NONE;
         private int _virtualDriveNum = -1;
         private View _listView = View.Details;
 
         public VirtualDrive VirtualDrive
         {
-            get
-            {
-                return new VirtualDrive(_virtualDriveType, _virtualDriveNum);
-            }
-            set
-            {
+            get { return new VirtualDrive(_virtualDriveType, _virtualDriveNum); }
+            set {
                 _virtualDriveType = value.Type;
                 _virtualDriveNum = value.Num;
                 Save(this);
-            } 
+            }
         }
+
         public View ListView
         {
-            get
-            {
-                return _listView;
-            }
+            get { return _listView; }
             set
             {
                 _listView = value;
                 Save(this);
             }
         }
-
-        public bool FileExists() { return File.Exists(_filename); }
 
         public Options()
         {
@@ -53,35 +47,38 @@ namespace DTWrapper.BDD
 
         public static bool Save(Options options)
         {
+            string filepath = Path.Combine(_directory, _filename);
             try {
-                if (File.Exists(_filename))
+                if (File.Exists(filepath))
                 {
-                    if (File.Exists(_filename + ".bak")) File.Delete(_filename + ".bak");
-                    File.Move(_filename, _filename + ".bak");
+                    if (File.Exists(filepath + ".bak")) File.Delete(filepath + ".bak");
+                    File.Move(filepath, filepath + ".bak");
                 }
 
-                FileStream file = File.Open(_filename, FileMode.Create);
+                FileStream file = File.Open(filepath, FileMode.Create);
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(file, options);
                 file.Flush();
                 file.Close();
+                if (File.Exists(filepath + ".bak")) File.Delete(filepath + ".bak");
                 return true;
             }
             catch (Exception e)
             {
                 LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
-                if(File.Exists(_filename)) File.Delete(_filename);
-                File.Move(_filename + ".bak", _filename);
+                if (File.Exists(filepath)) File.Delete(filepath);
+                File.Move(filepath + ".bak", filepath);
                 return false;
             }
         }
 
         public static Options Load()
         {
-            if (!File.Exists(_filename)) return null;
+            string filepath = Path.Combine(_directory, _filename);
+            if (!File.Exists(filepath)) return null;
             try
             {
-                FileStream file = File.OpenRead(_filename);
+                FileStream file = File.OpenRead(filepath);
                 BinaryFormatter bf = new BinaryFormatter();
                 Options tmp = (Options)bf.Deserialize(file);
                 file.Close();

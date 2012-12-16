@@ -75,7 +75,7 @@ namespace DTWrapper.CLI
             info.Show();
 
             Options opts = new Options();
-            if (!opts.FileExists() || !opts.Reload())
+            if (!opts.Reload())
             {
                 ShowError(Locale.GetString("OptionsError"));
                 return -1;

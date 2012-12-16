@@ -13,7 +13,8 @@ namespace DTWrapper.BDD
     [Serializable]
     public class ProgList
     {
-        private static string _filename = "DTWrapper.progs";
+        private static readonly string _directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
+        private static readonly string _filename = "DTWrapper.progs";
         private int _currentId = 0;
         private List<Prog> _progs = new List<Prog>();
 
@@ -75,37 +76,40 @@ namespace DTWrapper.BDD
 
         public static bool Save(ProgList list)
         {
+            string filepath = Path.Combine(_directory, _filename);
             try
             {
-                if (File.Exists(_filename))
+                if (File.Exists(filepath))
                 {
-                    if (File.Exists(_filename + ".bak")) File.Delete(_filename + ".bak");
-                    File.Move(_filename, _filename + ".bak");
+                    if (File.Exists(filepath + ".bak")) File.Delete(filepath + ".bak");
+                    File.Move(filepath, filepath + ".bak");
                 }
 
-                FileStream file = File.Open(_filename, FileMode.Create);
+                FileStream file = File.Open(filepath, FileMode.Create);
                 BinaryFormatter fm = new BinaryFormatter();
                 fm.Serialize(file, list);
                 file.Flush();
                 file.Close();
+                if (File.Exists(filepath + ".bak")) File.Delete(filepath + ".bak");
                 return true;
             }
             catch (Exception e)
             {
                 LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
-                if (File.Exists(_filename)) File.Delete(_filename);
-                File.Move(_filename + ".bak", _filename);
+                if (File.Exists(filepath)) File.Delete(filepath);
+                File.Move(filepath + ".bak", filepath);
                 return false;
             }
         }
 
         public static ProgList Load()
         {
-            if (!File.Exists(_filename)) return null;
+            string filepath = Path.Combine(_directory, _filename);
+            if (!File.Exists(filepath)) return null;
             try
             {
                 ProgList tmp;
-                FileStream file = File.OpenRead(_filename);
+                FileStream file = File.OpenRead(filepath);
                 BinaryFormatter bf = new BinaryFormatter();
                 tmp = (ProgList)bf.Deserialize(file);
                 file.Close();

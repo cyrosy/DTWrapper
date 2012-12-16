@@ -34,6 +34,14 @@ namespace DTWrapper.GUI
         {
             InitializeComponent();
             programIcon.Image = new Icon(DTWrapper.GUI.Properties.Resources.icon, 64, 64).ToBitmap();
+            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "LICENCE.txt")))
+            {
+                string[] licence = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "LICENCE.txt"));
+                foreach (string line in licence)
+                {
+                    this.licenceText.Text += String.Format("{0}\r\n", line);
+                }
+            }
         }
     }
 }

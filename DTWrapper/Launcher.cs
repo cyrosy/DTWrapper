@@ -25,7 +25,6 @@ using System.Windows.Forms;
 
 using DTWrapper.CLI;
 using DTWrapper.GUI;
-//using DTWrapper.WPF;
 using DTWrapper.Helpers;
 
 namespace DTWrapper
@@ -64,10 +63,6 @@ namespace DTWrapper
             try
             {
                 Application.Run(new MainWindow());
-                /*App app = new App();
-                app.MainWindow = new MainWindow();
-                app.MainWindow.Show();
-                app.Run();*/
             }
             catch (Exception e)
             {
