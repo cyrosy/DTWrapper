@@ -19,8 +19,6 @@ namespace DTWrapper.CLI
 
         public static int Main(string[] args)
         {
-            new MainWindow().findDT();
-
             if (args.Length < 2)
                 return Help();
             switch (args[0])
@@ -65,7 +63,7 @@ namespace DTWrapper.CLI
                 prog = progs.Get(progName);
             }
 
-            if (prog == null || !prog.IsOK())
+            if (prog == null || !prog.IsOK() || (prog.DiskImage.Length > 0 && !prog.DiskImageOK()))
             {
                 ShowError(String.Format(Locale.GetString("InvalidProgram"), progName));
                 return -1;
@@ -74,28 +72,39 @@ namespace DTWrapper.CLI
             InfoWindow info = new InfoWindow(String.Format(Locale.GetString("ProgPreparing"), prog.Name));
             info.Show();
 
-            Options opts = new Options();
-            if (!opts.Reload())
+            Options opts = null;
+            VirtualDrive virtualDrive = null;
+            if(prog.DiskImage.Length > 0)
             {
-                ShowError(Locale.GetString("OptionsError"));
-                return -1;
-            }
-            VirtualDrive virtualDrive = opts.VirtualDrive;
-
-            if (prog.DiskImage.Length > 0 && !virtualDrive.IsValid)
-            {
-                ShowError(Locale.GetString("InvalidDrive") + " : " + virtualDrive.ToString());
-                return -1;
-            }
-            else if (prog.DiskImageOK())
-            {
-                info.Close();
-                info = new InfoWindow(String.Format(Locale.GetString("DiskImageMounting"), prog.DiskImage, prog.Name));
-                info.Show();
-                if (!prog.MountDiskImage(virtualDrive))
+                if (!new MainWindow().findDT())
                 {
-                    ShowError(Locale.GetString("ErrorMounting"));
                     return -1;
+                }
+
+                opts = new Options();
+                if (!opts.Reload())
+                {
+                    ShowError(Locale.GetString("OptionsError"));
+                    return -1;
+                }
+                virtualDrive = opts.VirtualDrive;
+
+                if (!virtualDrive.IsValid)
+                {
+                    info.Close();
+                    ShowError(Locale.GetString("InvalidDrive") + " : " + virtualDrive.ToString());
+                    return -1;
+                }
+                else
+                {
+                    info.Close();
+                    info = new InfoWindow(String.Format(Locale.GetString("DiskImageMounting"), prog.DiskImage, prog.Name));
+                    info.Show();
+                    if (!prog.MountDiskImage(virtualDrive))
+                    {
+                        ShowError(Locale.GetString("ErrorMounting"));
+                        return -1;
+                    }
                 }
             }
 
@@ -107,14 +116,8 @@ namespace DTWrapper.CLI
             info.Close();
             proc.WaitForExit();
 
-            if (prog.DiskImage.Length > 0 && prog.DiskImageOK())
+            if (virtualDrive != null && virtualDrive.IsValid)
             {
-                if (!virtualDrive.IsValid)
-                {
-                    ShowError(Locale.GetString("InvalidDrive") + " : " + virtualDrive.ToString());
-                    return -1;
-                }
-
                 info = new InfoWindow(Locale.GetString("DiskImageUnmounting"));
                 info.Show();
                 virtualDrive.Umount();

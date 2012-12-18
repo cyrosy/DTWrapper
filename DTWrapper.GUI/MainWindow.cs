@@ -74,7 +74,7 @@ namespace DTWrapper.GUI
         #region Actions
 
         public void findDT(object sender, EventArgs e) { findDT(); }
-        public void findDT()
+        public bool findDT()
         {
             InfoWindow info = new InfoWindow(Locale.GetString("DT.Searching"));
             info.Show(this);
@@ -83,6 +83,7 @@ namespace DTWrapper.GUI
                 LogHelper.RaiseError(this, Locale.GetString("DT.NotFound"));
                 this.DTVersion.Text = Locale.GetString("DT.NotFound");
                 info.Close();
+                return false;
             }
             else
             {
@@ -99,6 +100,7 @@ namespace DTWrapper.GUI
                     selectedDrive.Text = virtualDrive.ToString();
                     info.Close();
                 }
+                return true;
             }
         }
 
