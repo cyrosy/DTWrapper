@@ -19,22 +19,38 @@ namespace DTWrapper.ShellExtension
 
         private JumpListHelper() { }
 
+        public static bool IsSupported()
+        {
+            try
+            {
+                JumpList jumpList = JumpList.CreateJumpList();
+            }
+            catch (PlatformNotSupportedException e)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static void Update()
         {
-            JumpList jumpList = JumpList.CreateJumpList();
-            List<Prog> progs =  new ProgList().GetJumpList();
-            progs.Reverse();
-
-            foreach (Prog prog in progs)
+            if (IsSupported())
             {
-                JumpListLink task = new JumpListLink(System.Reflection.Assembly.GetEntryAssembly().Location, prog.Name);
-                task.Arguments = "start " + prog.ID;
-                if(File.Exists(prog.Icon)) task.IconReference = new IconReference(@prog.Icon, 0);
-                task.WorkingDirectory = Environment.CurrentDirectory;
-                jumpList.AddUserTasks(task);
-            }
+                JumpList jumpList = JumpList.CreateJumpList();
+                List<Prog> progs = new ProgList().GetJumpList();
+                progs.Reverse();
 
-            jumpList.Refresh();
+                foreach (Prog prog in progs)
+                {
+                    JumpListLink task = new JumpListLink(System.Reflection.Assembly.GetEntryAssembly().Location, prog.Name);
+                    task.Arguments = "start " + prog.ID;
+                    if (File.Exists(prog.Icon)) task.IconReference = new IconReference(@prog.Icon, 0);
+                    task.WorkingDirectory = Environment.CurrentDirectory;
+                    jumpList.AddUserTasks(task);
+                }
+
+                jumpList.Refresh();
+            }
         }
     }
 }

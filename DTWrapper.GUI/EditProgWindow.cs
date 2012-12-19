@@ -25,8 +25,10 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Windows.Forms;
-using DTWrapper.Helpers;
+
 using DTWrapper.BDD;
+using DTWrapper.Helpers;
+using DTWrapper.ShellExtension;
 
 namespace DTWrapper.GUI
 {
@@ -46,6 +48,14 @@ namespace DTWrapper.GUI
             this.AcceptButton = this.saveButton;
             this.CancelButton = this.cancelButton;
             _progList = progList;
+
+            if (!JumpListHelper.IsSupported())
+            {
+                jumpListBox.Visible = false;
+                jumpListLabel.Visible = false;
+
+
+            }
 
             if (id < 0)
             {
