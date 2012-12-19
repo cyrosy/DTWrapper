@@ -21,16 +21,7 @@ namespace DTWrapper.ShellExtension
 
         public static bool IsSupported()
         {
-            try
-            {
-                JumpList jumpList = JumpList.CreateJumpList();
-                jumpList.Refresh();
-            }
-            catch (PlatformNotSupportedException e)
-            {
-                return false;
-            }
-            return true;
+            return ShellLibrary.IsPlatformSupported;
         }
 
         public static void Update()
