@@ -78,6 +78,7 @@ namespace DTWrapper.GUI
             this.buttonsTable = new System.Windows.Forms.TableLayoutPanel();
             this.saveButton = new System.Windows.Forms.Button();
             this.iconBrowser = new System.Windows.Forms.OpenFileDialog();
+            this.jumpListLabelState = new System.Windows.Forms.PictureBox();
             this.basicOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nameLabelState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pathLabelState)).BeginInit();
@@ -89,6 +90,7 @@ namespace DTWrapper.GUI
             ((System.ComponentModel.ISupportInitialize)(this.iconLabelState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPreview)).BeginInit();
             this.buttonsTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jumpListLabelState)).BeginInit();
             this.SuspendLayout();
             // 
             // basicOptions
@@ -227,6 +229,7 @@ namespace DTWrapper.GUI
             this.advancedOptions.Controls.Add(this.jumpListBox, 2, 0);
             this.advancedOptions.Controls.Add(this.argsLabel, 0, 1);
             this.advancedOptions.Controls.Add(this.argsField, 0, 2);
+            this.advancedOptions.Controls.Add(this.jumpListLabelState, 1, 0);
             this.advancedOptions.Name = "advancedOptions";
             // 
             // iconField
@@ -305,6 +308,12 @@ namespace DTWrapper.GUI
             this.iconBrowser.RestoreDirectory = true;
             this.iconBrowser.FileOk += new System.ComponentModel.CancelEventHandler(this.iconBrowser_FileOk);
             // 
+            // jumpListLabelState
+            // 
+            resources.ApplyResources(this.jumpListLabelState, "jumpListLabelState");
+            this.jumpListLabelState.Name = "jumpListLabelState";
+            this.jumpListLabelState.TabStop = false;
+            // 
             // EditProgWindow
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Dialog;
@@ -333,6 +342,7 @@ namespace DTWrapper.GUI
             ((System.ComponentModel.ISupportInitialize)(this.iconLabelState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPreview)).EndInit();
             this.buttonsTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.jumpListLabelState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,5 +382,6 @@ namespace DTWrapper.GUI
         private System.Windows.Forms.CheckBox jumpListBox;
         private System.Windows.Forms.Label argsLabel;
         private System.Windows.Forms.TextBox argsField;
+        private System.Windows.Forms.PictureBox jumpListLabelState;
     }
 }

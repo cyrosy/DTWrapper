@@ -694,10 +694,13 @@
     <value>Fill</value>
   </data>
   <data name="jumpListLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>3, 3</value>
+  </data>
+  <data name="jumpListLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="jumpListLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 25</value>
+    <value>294, 19</value>
   </data>
   <data name="jumpListLabel.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -804,6 +807,33 @@
   <data name="&gt;&gt;argsField.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="jumpListLabelState.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="jumpListLabelState.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 0</value>
+  </data>
+  <data name="jumpListLabelState.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="jumpListLabelState.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 25</value>
+  </data>
+  <data name="jumpListLabelState.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;jumpListLabelState.Name" xml:space="preserve">
+    <value>jumpListLabelState</value>
+  </data>
+  <data name="&gt;&gt;jumpListLabelState.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;jumpListLabelState.Parent" xml:space="preserve">
+    <value>advancedOptions</value>
+  </data>
+  <data name="&gt;&gt;jumpListLabelState.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="advancedOptions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -832,7 +862,7 @@
     <value>0</value>
   </data>
   <data name="advancedOptions.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="iconField" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="iconLabel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="iconButton" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="iconLabelState" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="iconPreview" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="jumpListLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="jumpListBox" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="argsLabel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="argsField" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Absolute,25,AutoSize,0" /&gt;&lt;Rows Styles="Absolute,25,Absolute,25,Absolute,25,Absolute,25,Absolute,25,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="iconField" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="iconLabel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="iconButton" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="iconLabelState" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="iconPreview" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="jumpListLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="jumpListBox" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="argsLabel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="argsField" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="jumpListLabelState" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Absolute,25,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,Absolute,25,Absolute,25,Absolute,25,Absolute,25,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="advancedTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

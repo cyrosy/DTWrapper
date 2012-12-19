@@ -51,10 +51,9 @@ namespace DTWrapper.GUI
 
             if (!JumpListHelper.IsSupported())
             {
-                jumpListBox.Visible = false;
-                jumpListLabel.Visible = false;
-
-
+                jumpListLabel.Hide();
+                jumpListLabelState.Hide();
+                jumpListBox.Hide();
             }
 
             if (id < 0)
