@@ -21,7 +21,7 @@ namespace DTWrapper.ShellExtension
 
         public static bool IsSupported()
         {
-            return ShellLibrary.IsPlatformSupported;
+            return TaskbarManager.IsPlatformSupported;
         }
 
         public static void Update()
