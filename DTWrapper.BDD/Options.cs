@@ -67,7 +67,7 @@ namespace DTWrapper.BDD
             {
                 LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
                 if (File.Exists(filepath)) File.Delete(filepath);
-                File.Move(filepath + ".bak", filepath);
+                if (File.Exists(filepath + ".bak")) File.Move(filepath + ".bak", filepath);
                 return false;
             }
         }
