@@ -24,6 +24,7 @@ namespace DTWrapper.ShellExtension
             try
             {
                 JumpList jumpList = JumpList.CreateJumpList();
+                jumpList.Refresh();
             }
             catch (PlatformNotSupportedException e)
             {
