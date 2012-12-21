@@ -82,27 +82,10 @@
     <Compile Include="VirtualDrive.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DT.fr.resx">
-      <DependentUpon>DT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DT.resx">
-      <DependentUpon>DT.cs</DependentUpon>
-      <LastGenOutput>DTHelper.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LogHelper.fr.resx">
-      <DependentUpon>LogHelper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LogHelper.resx">
-      <DependentUpon>LogHelper.cs</DependentUpon>
-      <LastGenOutput>LogHelper.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VirtualDrive.fr.resx">
-      <DependentUpon>VirtualDrive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VirtualDrive.resx">
-      <DependentUpon>VirtualDrive.cs</DependentUpon>
-      <LastGenOutput>VirtualDrive.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\DTWrapper.Localization\DTWrapper.Localization.csproj">
+      <Project>{c2d56dd6-615d-459e-8035-1916a397a303}</Project>
+      <Name>DTWrapper.Localization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

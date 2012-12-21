@@ -36,7 +36,6 @@ namespace DTWrapper.GUI
     public partial class MainWindow : Form
     {
         private Options _options = new Options();
-        private ResourceManager Locale = new ResourceManager("DTWrapper.GUI.MainWindow", typeof(MainWindow).Assembly);
         private VirtualDrive virtualDrive;
         private ProgList progList = new ProgList();
 
@@ -76,12 +75,12 @@ namespace DTWrapper.GUI
         public void findDT(object sender, EventArgs e) { findDT(); }
         public bool findDT()
         {
-            InfoWindow info = new InfoWindow(Locale.GetString("DT.Searching"));
+            InfoWindow info = new InfoWindow(Localization.Strings.DTSearching);
             info.Show(this);
             if (DT.Type == DTType.None)
             {
-                LogHelper.RaiseError(this, Locale.GetString("DT.NotFound"));
-                this.DTVersion.Text = Locale.GetString("DT.NotFound");
+                LogHelper.RaiseError(this, Localization.Strings.DTNotFound);
+                this.DTVersion.Text = Localization.Strings.DTNotFound;
                 info.Close();
                 return false;
             }
@@ -123,7 +122,7 @@ namespace DTWrapper.GUI
             refreshButtonsState();
             if (!this.startButton.Enabled) return false;
             
-            InfoWindow info = new InfoWindow(Locale.GetString("Prog.Preparing"));
+            InfoWindow info = new InfoWindow(Localization.Strings.Preparing);
             info.Show(this);
 
             Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
@@ -134,17 +133,17 @@ namespace DTWrapper.GUI
             }
 
             this.Hide();
-            this.trayIcon.Text = String.Format(Locale.GetString("trayIcon.Text"), prog.Name);
+            this.trayIcon.Text = String.Format(Localization.Strings.ProgWaitingEnd, prog.Name);
             this.trayIcon.Visible = true;
             info.Close();
 
-            info = new InfoWindow(String.Format(Locale.GetString("Prog.Mounting"), prog.DiskImage, prog.Name));
+            info = new InfoWindow(String.Format(Localization.Strings.DiskImageMounting, prog.DiskImage, prog.Name));
             info.Show(this);
             if (!prog.MountDiskImage(virtualDrive)) info.Close();
             else
             {
                 info.Close();
-                info = new InfoWindow(String.Format(Locale.GetString("Prog.Starting"), prog.Name));
+                info = new InfoWindow(String.Format(Localization.Strings.ProgStarting, prog.Name));
                 Process proc = prog.Start();
                 info.Close();
                 proc.WaitForExit();
@@ -152,7 +151,7 @@ namespace DTWrapper.GUI
 
                 if (prog.DiskImage.Length > 0)
                 {
-                    info = new InfoWindow(String.Format(Locale.GetString("Prog.Unmounting"), prog.DiskImage));
+                    info = new InfoWindow(String.Format(Localization.Strings.DiskImageUnmounting, prog.DiskImage));
                     info.Show(this);
                     virtualDrive.Umount();
                     info.Close();
@@ -183,17 +182,17 @@ namespace DTWrapper.GUI
                 Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
                 if (prog == null)
                 {
-                    LogHelper.RaiseError(this, Locale.GetString("Prog.NotFound"));
+                    LogHelper.RaiseError(this, Localization.Strings.ProgNotFound);
                 }
-                else if (MessageBox.Show(this, String.Format(Locale.GetString("Prog.AskDelete.Message"), prog.Name), Locale.GetString("Prog.AskDelete.Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                else if (MessageBox.Show(this, String.Format(Localization.Strings.ProgAskDelete, prog.Name), Localization.Strings.ProgDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (progList.Del(prog))
                     {
-                        LogHelper.RaiseSuccess(this, String.Format(Locale.GetString("Prog.Deleted"), prog.Name));
+                        LogHelper.RaiseSuccess(this, String.Format(Localization.Strings.ProgDeleted, prog.Name));
                     }
                     else
                     {
-                        LogHelper.RaiseError(this, String.Format(Locale.GetString("Prog.NotDeleted"), prog.Name));
+                        LogHelper.RaiseError(this, String.Format(Localization.Strings.ProgNotDeleted, prog.Name));
                     }
                 }
             }
@@ -232,7 +231,7 @@ namespace DTWrapper.GUI
                 if (!prog.PathOK())
                 {
                     valid = false;
-                    item.ToolTipText += Locale.GetString("Error.InvalidExe");
+                    item.ToolTipText += Localization.Strings.InvalidExe;
                 }
 
                 ListViewItem.ListViewSubItem isoItem = new ListViewItem.ListViewSubItem(item, prog.DiskImage);
@@ -241,13 +240,13 @@ namespace DTWrapper.GUI
                 if (!prog.DiskImageOK())
                 {
                     valid = false;
-                    item.ToolTipText += Locale.GetString("Error.InvalidIso");
+                    item.ToolTipText += Localization.Strings.InvalidIso;
                 }
 
                 if (!prog.IconOK())
                 {
                     valid = false;
-                    item.ToolTipText += Locale.GetString("Error.InvalidIcon");
+                    item.ToolTipText += Localization.Strings.InvalidIcon;
                 }
 
                 try

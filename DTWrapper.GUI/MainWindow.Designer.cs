@@ -84,7 +84,8 @@ namespace DTWrapper.GUI
             // 
             // trayIcon
             // 
-            resources.ApplyResources(this.trayIcon, "trayIcon");
+            this.trayIcon.Icon = Properties.Resources.icon;
+            this.trayIcon.Text = Localization.Strings.ProgWaitingEnd;
             // 
             // progsListView
             // 
@@ -92,15 +93,18 @@ namespace DTWrapper.GUI
             this.nameColumn,
             this.exeColumn,
             this.isoColumn});
-            resources.ApplyResources(this.progsListView, "progsListView");
+            this.progsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progsListView.FullRowSelect = true;
             this.progsListView.GridLines = true;
             this.progsListView.HideSelection = false;
             this.progsListView.LargeImageList = this.largeIcons;
+            this.progsListView.Location = new System.Drawing.Point(0, 49);
             this.progsListView.MultiSelect = false;
             this.progsListView.Name = "progsListView";
+            this.progsListView.Size = new System.Drawing.Size(584, 291);
             this.progsListView.SmallImageList = this.smallIcons;
             this.progsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.progsListView.TabIndex = 0;
             this.progsListView.UseCompatibleStateImageBehavior = false;
             this.progsListView.View = System.Windows.Forms.View.Details;
             this.progsListView.SelectedIndexChanged += new System.EventHandler(this.gamesListView_SelectedIndexChanged);
@@ -109,28 +113,30 @@ namespace DTWrapper.GUI
             // nameColumn
             // 
             this.nameColumn.Tag = "Nom";
-            resources.ApplyResources(this.nameColumn, "nameColumn");
+            this.nameColumn.Text = Localization.Strings.Name;
             // 
             // exeColumn
             // 
             this.exeColumn.Tag = "Exe";
-            resources.ApplyResources(this.exeColumn, "exeColumn");
+            this.exeColumn.Text = Localization.Strings.ExecutablePath;
+            this.exeColumn.Width = 131;
             // 
             // isoColumn
             // 
             this.isoColumn.Tag = "Iso";
-            resources.ApplyResources(this.isoColumn, "isoColumn");
+            this.isoColumn.Text = Localization.Strings.DiskImagePath;
+            this.isoColumn.Width = 157;
             // 
             // largeIcons
             // 
             this.largeIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            resources.ApplyResources(this.largeIcons, "largeIcons");
+            this.largeIcons.ImageSize = new System.Drawing.Size(32, 32);
             this.largeIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // smallIcons
             // 
             this.smallIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            resources.ApplyResources(this.smallIcons, "smallIcons");
+            this.smallIcons.ImageSize = new System.Drawing.Size(16, 16);
             this.smallIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // statusBar
@@ -138,27 +144,33 @@ namespace DTWrapper.GUI
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DTVersion,
             this.selectedDrive});
-            resources.ApplyResources(this.statusBar, "statusBar");
+            this.statusBar.Location = new System.Drawing.Point(0, 340);
             this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(584, 22);
             this.statusBar.SizingGrip = false;
+            this.statusBar.TabIndex = 3;
             // 
             // DTVersion
             // 
             this.DTVersion.Name = "DTVersion";
-            resources.ApplyResources(this.DTVersion, "DTVersion");
+            this.DTVersion.Size = new System.Drawing.Size(166, 17);
+            this.DTVersion.Text = Localization.Strings.DTVersion;
             // 
             // selectedDrive
             // 
             this.selectedDrive.Name = "selectedDrive";
-            resources.ApplyResources(this.selectedDrive, "selectedDrive");
+            this.selectedDrive.Size = new System.Drawing.Size(173, 17);
+            this.selectedDrive.Text = Localization.Strings.VirtualDrive;
             // 
             // menuBar
             // 
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.aboutMenu});
-            resources.ApplyResources(this.menuBar, "menuBar");
+            this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
+            this.menuBar.Size = new System.Drawing.Size(584, 24);
+            this.menuBar.TabIndex = 1;
             // 
             // fileMenu
             // 
@@ -167,25 +179,31 @@ namespace DTWrapper.GUI
             this.optionsMenuItem,
             this.exitMenuItem});
             this.fileMenu.Name = "fileMenu";
-            resources.ApplyResources(this.fileMenu, "fileMenu");
+            this.fileMenu.Size = new System.Drawing.Size(142, 20);
+            this.fileMenu.Text = Localization.Strings.File;
             // 
             // addMenuItem
             // 
             this.addMenuItem.Image = global::DTWrapper.GUI.Properties.Resources.add;
             this.addMenuItem.Name = "addMenuItem";
-            resources.ApplyResources(this.addMenuItem, "addMenuItem");
+            this.addMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.addMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.addMenuItem.Text = Localization.Strings.AddProgram;
             this.addMenuItem.Click += new System.EventHandler(this.addMenuItem_Click);
             // 
             // optionsMenuItem
             // 
             this.optionsMenuItem.Name = "optionsMenuItem";
-            resources.ApplyResources(this.optionsMenuItem, "optionsMenuItem");
+            this.optionsMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.optionsMenuItem.Text = Localization.Strings.Options;
             this.optionsMenuItem.Click += new System.EventHandler(this.optionsMenuItem_Click);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            resources.ApplyResources(this.exitMenuItem, "exitMenuItem");
+            this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.exitMenuItem.Text = Localization.Strings.Exit;
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // aboutMenu
@@ -193,12 +211,14 @@ namespace DTWrapper.GUI
             this.aboutMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutItem});
             this.aboutMenu.Name = "aboutMenu";
-            resources.ApplyResources(this.aboutMenu, "aboutMenu");
+            this.aboutMenu.Size = new System.Drawing.Size(188, 20);
+            this.aboutMenu.Text = Localization.Strings.AboutMenu;
             // 
             // aboutItem
             // 
             this.aboutItem.Name = "aboutItem";
-            resources.ApplyResources(this.aboutItem, "aboutItem");
+            this.aboutItem.Size = new System.Drawing.Size(212, 22);
+            this.aboutItem.Text = Localization.Strings.About;
             this.aboutItem.Click += new System.EventHandler(this.aboutItem_Click);
             // 
             // toolBar
@@ -211,44 +231,54 @@ namespace DTWrapper.GUI
             this.deleteButton,
             this.listViewDisplayModeDropDown,
             this.shortcutButton});
-            resources.ApplyResources(this.toolBar, "toolBar");
+            this.toolBar.Location = new System.Drawing.Point(0, 24);
             this.toolBar.Name = "toolBar";
+            this.toolBar.Size = new System.Drawing.Size(584, 25);
+            this.toolBar.TabIndex = 2;
             // 
             // addButton
             // 
             this.addButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.addButton.Image = global::DTWrapper.GUI.Properties.Resources.add;
-            resources.ApplyResources(this.addButton, "addButton");
+            this.addButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(23, 22);
+            this.addButton.Text = Localization.Strings.AddProgram;
             this.addButton.Click += new System.EventHandler(this.addGameButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // startButton
             // 
             this.startButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.startButton.Image = global::DTWrapper.GUI.Properties.Resources.play;
-            resources.ApplyResources(this.startButton, "startButton");
+            this.startButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(23, 22);
+            this.startButton.Text = Localization.Strings.Start;
             this.startButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
             // editButton
             // 
             this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.editButton.Image = global::DTWrapper.GUI.Properties.Resources.edit;
-            resources.ApplyResources(this.editButton, "editButton");
+            this.editButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(23, 22);
+            this.editButton.Text = Localization.Strings.Edit;
             this.editButton.Click += new System.EventHandler(this.editGameButton_Click);
             // 
             // deleteButton
             // 
             this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.deleteButton.Image = global::DTWrapper.GUI.Properties.Resources.del;
-            resources.ApplyResources(this.deleteButton, "deleteButton");
+            this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(23, 22);
+            this.deleteButton.Text = Localization.Strings.Delete;
             this.deleteButton.Click += new System.EventHandler(this.deleteGameButton_Click);
             // 
             // listViewDisplayModeDropDown
@@ -261,56 +291,67 @@ namespace DTWrapper.GUI
             this.smallIconsListViewMode,
             this.largeIconsListViewMode});
             this.listViewDisplayModeDropDown.Image = global::DTWrapper.GUI.Properties.Resources.zoom;
-            resources.ApplyResources(this.listViewDisplayModeDropDown, "listViewDisplayModeDropDown");
+            this.listViewDisplayModeDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.listViewDisplayModeDropDown.Name = "listViewDisplayModeDropDown";
+            this.listViewDisplayModeDropDown.Size = new System.Drawing.Size(29, 22);
+            this.listViewDisplayModeDropDown.Text = Localization.Strings.View;
             // 
             // detailsListViewMode
             // 
             this.detailsListViewMode.Name = "detailsListViewMode";
-            resources.ApplyResources(this.detailsListViewMode, "detailsListViewMode");
+            this.detailsListViewMode.Size = new System.Drawing.Size(236, 22);
+            this.detailsListViewMode.Text = Localization.Strings.Details;
             this.detailsListViewMode.Click += new System.EventHandler(this.detailsListViewMode_Click);
             // 
             // listListViewMode
             // 
             this.listListViewMode.Name = "listListViewMode";
-            resources.ApplyResources(this.listListViewMode, "listListViewMode");
+            this.listListViewMode.Size = new System.Drawing.Size(236, 22);
+            this.listListViewMode.Text = Localization.Strings.List;
             this.listListViewMode.Click += new System.EventHandler(this.listListViewMode_Click);
             // 
             // smallIconsListViewMode
             // 
             this.smallIconsListViewMode.Name = "smallIconsListViewMode";
-            resources.ApplyResources(this.smallIconsListViewMode, "smallIconsListViewMode");
+            this.smallIconsListViewMode.Size = new System.Drawing.Size(236, 22);
+            this.smallIconsListViewMode.Text = Localization.Strings.SmallIcons;
             this.smallIconsListViewMode.Click += new System.EventHandler(this.smallIconsListViewMode_Click);
             // 
             // largeIconsListViewMode
             // 
             this.largeIconsListViewMode.Name = "largeIconsListViewMode";
-            resources.ApplyResources(this.largeIconsListViewMode, "largeIconsListViewMode");
+            this.largeIconsListViewMode.Size = new System.Drawing.Size(236, 22);
+            this.largeIconsListViewMode.Text = Localization.Strings.LargeIcons;
             this.largeIconsListViewMode.Click += new System.EventHandler(this.largeIconsListViewMode_Click);
             // 
             // shortcutButton
             // 
             this.shortcutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.shortcutButton.Image = global::DTWrapper.GUI.Properties.Resources.shortcut;
-            resources.ApplyResources(this.shortcutButton, "shortcutButton");
+            this.shortcutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shortcutButton.Name = "shortcutButton";
+            this.shortcutButton.Size = new System.Drawing.Size(23, 22);
+            this.shortcutButton.Text = Localization.Strings.CreateShortcut;
             this.shortcutButton.Click += new System.EventHandler(this.shortcutButton_Click);
             // 
             // menuBarSeparator
             // 
             this.menuBarSeparator.Name = "menuBarSeparator";
-            resources.ApplyResources(this.menuBarSeparator, "menuBarSeparator");
+            this.menuBarSeparator.Size = new System.Drawing.Size(6, 25);
             // 
             // MainWindow
             // 
-            resources.ApplyResources(this, "$this");
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.progsListView);
             this.Controls.Add(this.toolBar);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuBar);
             this.DoubleBuffered = true;
+            this.Icon = Properties.Resources.icon;
             this.MainMenuStrip = this.menuBar;
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = Localization.Strings.ProgramName;
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.menuBar.ResumeLayout(false);

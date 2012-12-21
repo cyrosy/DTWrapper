@@ -37,11 +37,13 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>programIcon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,15 +71,10 @@
       <Project>{c739809e-ac34-4ede-bdd4-da9a308a1a04}</Project>
       <Name>DTWrapper.Helpers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Program.fr.resx">
-      <DependentUpon>Program.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Program.resx">
-      <DependentUpon>Program.cs</DependentUpon>
-      <LastGenOutput>Program.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\DTWrapper.Localization\DTWrapper.Localization.csproj">
+      <Project>{c2d56dd6-615d-459e-8035-1916a397a303}</Project>
+      <Name>DTWrapper.Localization</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="programIcon.ico" />

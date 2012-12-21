@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Win32;

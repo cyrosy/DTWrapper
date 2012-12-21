@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
@@ -33,8 +32,6 @@ namespace DTWrapper.Helpers
         private static readonly int logsToKeep = 10;
         private static readonly string Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper", "Logs");
         private static string Filename = "";
-
-        private static ResourceManager Locale = new ResourceManager("DTWrapper.Helpers.LogHelper", typeof(LogHelper).Assembly);
 
         private LogHelper() {}
 
@@ -130,7 +127,7 @@ namespace DTWrapper.Helpers
         public static void RaiseError(IWin32Window owner, string msg)
         {
             WriteLine(msg, MessageType.ERROR);
-            MessageBox.Show(owner, msg, Locale.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(owner, msg, Localization.Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 
@@ -142,7 +139,7 @@ namespace DTWrapper.Helpers
         public static void RaiseSuccess(IWin32Window owner, string msg)
         {
             WriteLine(msg, MessageType.INFO);
-            MessageBox.Show(owner, msg, Locale.GetString("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(owner, msg, Localization.Strings.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>

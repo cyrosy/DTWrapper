@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTWrapper.CLI", "DTWrapper.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTWrapper.ShellExtension", "DTWrapper.ShellExtension\DTWrapper.ShellExtension.csproj", "{A4E85B16-81DB-4844-A5BD-5A55AC671F10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTWrapper.Localization", "DTWrapper.Localization\DTWrapper.Localization.csproj", "{C2D56DD6-615D-459E-8035-1916A397A303}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{A4E85B16-81DB-4844-A5BD-5A55AC671F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4E85B16-81DB-4844-A5BD-5A55AC671F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4E85B16-81DB-4844-A5BD-5A55AC671F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D56DD6-615D-459E-8035-1916A397A303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D56DD6-615D-459E-8035-1916A397A303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D56DD6-615D-459E-8035-1916A397A303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D56DD6-615D-459E-8035-1916A397A303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

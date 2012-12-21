@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
@@ -15,8 +14,6 @@ namespace DTWrapper.ShellExtension
 {
     public class JumpListHelper
     {
-        private static ResourceManager Locale = new ResourceManager("DTWrapper.ShellExtension.JumpListHelper", typeof(JumpListHelper).Assembly);
-
         private JumpListHelper() { }
 
         public static bool IsSupported()

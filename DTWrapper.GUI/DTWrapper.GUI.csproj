@@ -133,38 +133,14 @@
       <DependentUpon>OptionsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AboutWindow.fr.resx">
-      <DependentUpon>AboutWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AboutWindow.resx">
-      <DependentUpon>AboutWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditProgWindow.fr.resx">
-      <DependentUpon>EditProgWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditProgWindow.resx">
       <DependentUpon>EditProgWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InfoWindow.fr.resx">
-      <DependentUpon>InfoWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InfoWindow.resx">
-      <DependentUpon>InfoWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.fr.resx">
-      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionsWindow.fr.resx">
-      <DependentUpon>OptionsWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsWindow.resx">
-      <DependentUpon>OptionsWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -182,6 +158,10 @@
     <ProjectReference Include="..\DTWrapper.Helpers\DTWrapper.Helpers.csproj">
       <Project>{C739809E-AC34-4EDE-BDD4-DA9A308A1A04}</Project>
       <Name>DTWrapper.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTWrapper.Localization\DTWrapper.Localization.csproj">
+      <Project>{c2d56dd6-615d-459e-8035-1916a397a303}</Project>
+      <Name>DTWrapper.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTWrapper.ShellExtension\DTWrapper.ShellExtension.csproj">
       <Project>{a4e85b16-81db-4844-a5bd-5a55ac671f10}</Project>

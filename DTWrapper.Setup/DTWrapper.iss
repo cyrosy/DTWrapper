@@ -20,15 +20,13 @@ Source: "..\DTWrapper\bin\Release\DTWrapper.BDD.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\DTWrapper.CLI.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\DTWrapper.GUI.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\DTWrapper.Helpers.dll"; DestDir: "{app}"
+Source: "..\DTWrapper\bin\Release\DTWrapper.Localization.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\DTWrapper.ShellExtension.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"
 Source: "..\DTWrapper\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"
 Source: "licence.txt"; DestDir: "{app}"; DestName: "LICENCE.txt"
-Source: "..\DTWrapper\bin\Release\fr\DTWrapper.CLI.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
-Source: "..\DTWrapper\bin\Release\fr\DTWrapper.GUI.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
-Source: "..\DTWrapper\bin\Release\fr\DTWrapper.Helpers.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
 Source: "..\DTWrapper\bin\Release\fr\DTWrapper.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
-Source: "..\DTWrapper\bin\Release\fr\DTWrapper.ShellExtension.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
+Source: "..\DTWrapper\bin\Release\fr\DTWrapper.Localization.resources.dll"; DestDir: "{app}\fr"; Components: languages/french
 
 [Dirs]
 Name: "{app}\fr"; Components: languages/french

@@ -32,16 +32,16 @@ namespace DTWrapper.GUI
 {
     public partial class OptionsWindow : Form
     {
-        private ResourceManager Locale = new ResourceManager("DTWrapper.GUI.OptionsWindow", typeof(OptionsWindow).Assembly);
         private Options _options;
 
         public OptionsWindow(Options options)
         {
             InitializeComponent();
             _options = options;
+
             if (!loadDrives())
             {
-                LogHelper.RaiseError(this, Locale.GetString("NoDTDrive"));
+                LogHelper.RaiseError(this, Localization.Strings.VirtualDriveNoneFound);
             }
         }
 
@@ -61,13 +61,13 @@ namespace DTWrapper.GUI
             }
 
             _options.VirtualDrive = drive;
-            LogHelper.WriteLine(String.Format(Locale.GetString("DriveSelected"), drive.ToString()), LogHelper.MessageType.INFO);
+            LogHelper.WriteLine(String.Format(Localization.Strings.VirtualDriveSelected, drive.ToString()), LogHelper.MessageType.INFO);
             return true;
         }
 
         private bool loadDrives()
         {
-            InfoWindow info = new InfoWindow(Locale.GetString("DriveSearching"));
+            InfoWindow info = new InfoWindow(Localization.Strings.VirtualDriveSearching);
             info.Show(this);
             driveField.Items.Clear();
             List<VirtualDrive> drives = new List<VirtualDrive>();

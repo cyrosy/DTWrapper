@@ -22,7 +22,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 
@@ -34,7 +33,6 @@ namespace DTWrapper.GUI
 {
     public partial class EditProgWindow : Form
     {
-        private ResourceManager Locale = new ResourceManager("DTWrapper.GUI.EditProgWindow", typeof(EditProgWindow).Assembly);
         private Prog _prog;
         private ProgList _progList;
         private string _error;
@@ -58,13 +56,13 @@ namespace DTWrapper.GUI
 
             if (id < 0)
             {
-                this.Text = Locale.GetString("Title.AddGame");
+                this.Text = Localization.Strings.AddProgram;
                 _prog = _progList.CreateProg();
                 _isNew = true;
             }
             else
             {
-                this.Text = Locale.GetString("Title.EditGame");
+                this.Text = Localization.Strings.EditProgram;
                 _prog = progList.Get(id);
                 _isNew = false;
                 this.nameField.Text = _prog.Name;
@@ -98,7 +96,7 @@ namespace DTWrapper.GUI
                 }
                 else
                 {
-                    LogHelper.RaiseError(this, String.Format(Locale.GetString("Error.Updating"), _prog.Name));
+                    LogHelper.RaiseError(this, String.Format(Localization.Strings.ProgNotModified, _prog.Name));
                     return false;
                 }
             }
@@ -110,7 +108,7 @@ namespace DTWrapper.GUI
                 }
                 else
                 {
-                    LogHelper.RaiseError(this, String.Format(Locale.GetString("Error.Adding"), _prog.Name));
+                    LogHelper.RaiseError(this, String.Format(Localization.Strings.ProgNotAdded, _prog.Name));
                     return false;
                 }
             }
@@ -135,12 +133,12 @@ namespace DTWrapper.GUI
 
         private void setOKState(PictureBox image)
         {
-            image.Image = null;
+            image.Hide();
         }
 
         private void setWarnState(PictureBox image)
         {
-            image.Image = DTWrapper.GUI.Properties.Resources.warning;
+            image.Show();
         }
 
         #endregion
@@ -151,25 +149,32 @@ namespace DTWrapper.GUI
         {
             _error = "";
 
-            if (!checkName()) _error += Locale.GetString("Error.InvalidName") + Environment.NewLine;
+            if (!checkName()) _error += Localization.Strings.InvalidName + Environment.NewLine;
 
-            if (!checkExe()) _error += Locale.GetString("Error.InvalidEXE") + Environment.NewLine;
+            if (!checkExe()) _error += Localization.Strings.InvalidExe+ Environment.NewLine;
 
-            if (!checkIso()) _error += Locale.GetString("Error.InvalidISO") + Environment.NewLine;
+            if (!checkDiskImage()) _error += Localization.Strings.InvalidIso + Environment.NewLine;
 
-            if (!checkIcon()) _error += Locale.GetString("Error.InvalidIcon") + Environment.NewLine;
+            if (!checkIcon()) _error += Localization.Strings.InvalidIcon + Environment.NewLine;
 
             this._prog.Args = this.argsField.Text;
             this._prog.InJumpList = this.jumpListBox.Checked;
 
-            return this._prog.IsOK();
+            if (_error.Length > 0)
+            {
+                LogHelper.RaiseError(this, _error);
+                _error = "";
+                return false;
+            }
+
+            return true;
         }
 
         private bool checkName()
         {
-            this._prog.Name = this.nameField.Text;
-            if (this._prog.NameOK())
+            if (Prog.NameOK(nameField.Text))
             {
+                _prog.Name = nameField.Text;
                 setOKState(nameLabelState);
                 return true;
             }
@@ -180,9 +185,9 @@ namespace DTWrapper.GUI
 
         private bool checkExe()
         {
-            this._prog.Path = this.pathField.Text;
-            if (this._prog.PathOK())
+            if (Prog.PathOK(pathField.Text))
             {
+                _prog.Path = pathField.Text;
                 setOKState(pathLabelState);
                 return true;
             }
@@ -191,11 +196,11 @@ namespace DTWrapper.GUI
             return false;
         }
 
-        private bool checkIso()
+        private bool checkDiskImage()
         {
-            this._prog.DiskImage = this.diskImageField.Text;
-            if (this._prog.DiskImageOK())
+            if (Prog.DiskImageOK(diskImageField.Text))
             {
+                _prog.DiskImage = diskImageField.Text;
                 setOKState(diskImageLabelState);
                 return true;
             }
@@ -206,9 +211,9 @@ namespace DTWrapper.GUI
 
         private bool checkIcon()
         {
-            this._prog.Icon = this.iconField.Text;
-            if (this._prog.IconOK())
+            if (Prog.IconOK(iconField.Text))
             {
+                _prog.Icon = iconField.Text;
                 setOKState(iconLabelState);
                 return true;
             }
@@ -249,7 +254,7 @@ namespace DTWrapper.GUI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (saveGame())
+            if (checkGame() && saveGame())
             {
                 this.Close();
             }
@@ -262,7 +267,7 @@ namespace DTWrapper.GUI
         private void diskImageBrowser_FileOk(object sender, CancelEventArgs e)
         {
             this.diskImageField.Text = this.diskImageBrowser.FileName;
-            checkIso();
+            checkDiskImage();
         }
 
         private void pathBrowser_FileOk(object sender, CancelEventArgs e)
@@ -305,7 +310,7 @@ namespace DTWrapper.GUI
 
         private void diskImageField_TextChanged(object sender, EventArgs e)
         {
-            checkIso();
+            checkDiskImage();
         }
 
         private void iconField_TextChanged(object sender, EventArgs e)

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>À Propos</value>
+  </data>
+  <data name="AboutMenu" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="AddProgram" xml:space="preserve">
+    <value>Ajouter un programme</value>
+  </data>
+  <data name="AddToJumpList" xml:space="preserve">
+    <value>Ajouter à la liste de raccourcis</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Avancé</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>Basique</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="CreateShortcut" xml:space="preserve">
+    <value>Créer un raccourci sur le bureau</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="DiskImageFilter" xml:space="preserve">
+    <value>Images disque|*.iso; *.mdx; *.mds; *.mdf; *.ccd; *.cue; *.ape; *.flac; *.isz; *.cdi; *.b5t; *.b6t; *.bwt; *.nrg|Tous|*.*</value>
+  </data>
+  <data name="DiskImageMounting" xml:space="preserve">
+    <value>Image disque "{0}" en cours de montage pour {1} ...</value>
+  </data>
+  <data name="DiskImagePath" xml:space="preserve">
+    <value>Chemin de l'image disque</value>
+  </data>
+  <data name="DiskImageUnmounting" xml:space="preserve">
+    <value>Image disque en cours de démontage ...</value>
+  </data>
+  <data name="DTNotFound" xml:space="preserve">
+    <value>Daemon Tools non trouvé</value>
+  </data>
+  <data name="DTSearching" xml:space="preserve">
+    <value>Recherche de l'installation de Daemon Tools ...</value>
+  </data>
+  <data name="DTVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="DTWrapper" xml:space="preserve">
+    <value>DTWrapper</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="EditProgram" xml:space="preserve">
+    <value>Modifier un programme</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="ExecutableFilter" xml:space="preserve">
+    <value>Exécutables|*.exe|Tous|*.*</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Chemin de l'exécutable</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="IconFilter" xml:space="preserve">
+    <value>Fichiers d'icônes|*.ico; *.exe|Tous|*.*</value>
+  </data>
+  <data name="IconPath" xml:space="preserve">
+    <value>Icône</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="InfoText" xml:space="preserve">
+    <value>Texte d'information</value>
+  </data>
+  <data name="InvalidDrive" xml:space="preserve">
+    <value>Lecteur virtuel invalide</value>
+  </data>
+  <data name="InvalidExe" xml:space="preserve">
+    <value>Exécutable invalide</value>
+  </data>
+  <data name="InvalidIcon" xml:space="preserve">
+    <value>Icône invalide</value>
+  </data>
+  <data name="InvalidIso" xml:space="preserve">
+    <value>Image disque invalide</value>
+  </data>
+  <data name="LargeIcons" xml:space="preserve">
+    <value>Grandes Icônes</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="OptionsError" xml:space="preserve">
+    <value>Erreur lors du chargement des options.</value>
+  </data>
+  <data name="Preparing" xml:space="preserve">
+    <value>Préparation pour le lancement ...</value>
+  </data>
+  <data name="ProgAskDelete" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer le programme "{0}" ?</value>
+  </data>
+  <data name="ProgDelete" xml:space="preserve">
+    <value>Supprimer un programme</value>
+  </data>
+  <data name="ProgDeleted" xml:space="preserve">
+    <value>Programme "{0}" supprimé</value>
+  </data>
+  <data name="ProgNotDeleted" xml:space="preserve">
+    <value>Programme "{0}" non supprimé</value>
+  </data>
+  <data name="ProgNotFound" xml:space="preserve">
+    <value>Programme "{0}" non trouvé</value>
+  </data>
+  <data name="ProgPreparing" xml:space="preserve">
+    <value>Préparation du lancement de {0} ...</value>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>DTWrapper</value>
+  </data>
+  <data name="ProgStarting" xml:space="preserve">
+    <value>{0} démarre ...</value>
+  </data>
+  <data name="ProgWaitingEnd" xml:space="preserve">
+    <value>Attente de la fermeture de {0}</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sauver</value>
+  </data>
+  <data name="SmallIcons" xml:space="preserve">
+    <value>Petites Icônes</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Utilisation</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Affichage</value>
+  </data>
+  <data name="VirtualDrive" xml:space="preserve">
+    <value>Lecteur virtuel</value>
+  </data>
+  <data name="VirtualDriveChoose" xml:space="preserve">
+    <value>Choisissez un lecteur virtuel</value>
+  </data>
+  <data name="VirtualDriveNoneFound" xml:space="preserve">
+    <value>Aucun lecteur virtuel n'a été trouvé. Ajoutez-en un avec Daemon Tools et ré-essayez.</value>
+  </data>
+  <data name="VirtualDriveSearching" xml:space="preserve">
+    <value>Recherche de lecteurs virtuels ...</value>
+  </data>
+  <data name="VirtualDriveSelected" xml:space="preserve">
+    <value>Lecteur virtuel {0} sélectionné</value>
+  </data>
+  <data name="Args" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
+  <data name="InvalidName" xml:space="preserve">
+    <value>Nom invalide</value>
+  </data>
+  <data name="ProgNotAdded" xml:space="preserve">
+    <value>Programme non ajouté</value>
+  </data>
+  <data name="ProgNotModified" xml:space="preserve">
+    <value>Programme "{0}" non modifié</value>
+  </data>
+  <data name="ErrorMounting" xml:space="preserve">
+    <value>An error occured while mouting disk image</value>
+  </data>
+</root>

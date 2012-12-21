@@ -68,22 +68,42 @@ namespace DTWrapper.BDD
 
         public bool NameOK()
         {
-            return (_name.Length > 0);
+            return NameOK(_name);
+        }
+
+        public static bool NameOK(string name)
+        {
+            return (name.Length > 0);
         }
 
         public bool PathOK()
         {
-            return (_path.Length > 0 && File.Exists(_path));
+            return PathOK(_path);
+        }
+
+        public static bool PathOK(string path)
+        {
+            return (path.Length > 0 && File.Exists(path));
         }
 
         public bool DiskImageOK()
         {
-            return (_diskImage.Length > 0 && File.Exists(_path)) || (_diskImage.Length == 0);
+            return DiskImageOK(_diskImage);
+        }
+
+        public static bool DiskImageOK(string diskImage)
+        {
+            return (diskImage.Length > 0 && File.Exists(diskImage)) || (diskImage.Length == 0);
         }
 
         public bool IconOK()
         {
-            return (_icon.Length > 0 && File.Exists(_icon)) || (_icon.Length == 0);
+            return IconOK(_icon);
+        }
+        
+        public static bool IconOK(string icon)
+        {
+            return (icon.Length > 0 && File.Exists(icon)) || (icon.Length == 0);
         }
 
         public bool IsOK()
