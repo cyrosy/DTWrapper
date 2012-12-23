@@ -1,6 +1,11 @@
+#define AppCopyright GetStringFileInfo("..\DTWrapper\bin\Release\DTWrapper.exe", "AssemblyCopyright")
+#define AppVersion GetFileVersion("..\DTWrapper\bin\Release\DTWrapper.exe")
+
 [Setup]
 AppName=DTWrapper
-AppCopyright=Created by Cyro
+AppVerName=DTWrapper
+AppCopyright={#AppCopyright}
+AppVersion={#AppVersion}
 AppId={{4A1746B1-28DB-4152-98D0-8C6D645AB7B1}
 SetupIconFile=..\DTWrapper\programIcon.ico
 DefaultDirName={pf}\DTWrapper
@@ -10,9 +15,13 @@ OutputBaseFilename=DTWrapper-setup
 Compression=lzma2/ultra64
 InternalCompressLevel=ultra
 CompressionThreads=2
-AppVersion=1.0.0
 LicenseFile=licence.txt
 UninstallDisplayIcon={app}\DTWrapper.exe
+VersionInfoVersion={#AppVersion}
+VersionInfoCopyright={#AppCopyright}
+VersionInfoProductName=DTWrapper
+VersionInfoProductVersion={#AppVersion}
+VersionInfoProductTextVersion=DTWrapper v{#AppVersion}
 
 [Files]
 Source: "..\DTWrapper\bin\Release\DTWrapper.exe"; DestDir: "{app}"
