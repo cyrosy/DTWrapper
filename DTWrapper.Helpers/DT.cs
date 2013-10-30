@@ -41,7 +41,8 @@ namespace DTWrapper.Helpers
     {
         None,
         Lite,
-        Pro
+        Pro,
+        Ultra
     }
 
     /// <summary>
@@ -93,9 +94,26 @@ namespace DTWrapper.Helpers
         /// </summary>
         public static void ReadRegistry()
         {
-            RegistryKey regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\DT Soft\\DAEMON Tools Pro");
-            if (regKey == null)
-                regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\DT Soft\\DAEMON Tools Pro");
+            var Paths = new List<string>();
+            Paths.Add("SOFTWARE\\Disc Soft");
+            Paths.Add("SOFTWARE\\Wow6432Node\\Disc Soft");
+            Paths.Add("SOFTWARE\\DT Soft");
+            Paths.Add("SOFTWARE\\Wow6432Node\\DT Soft");
+
+            var Versions = new List<string>();
+            Versions.Add("DAEMON Tools Pro");
+            Versions.Add("DAEMON Tools Ultra");
+
+            RegistryKey regKey = null;
+            foreach (string v in Versions)
+            {
+                foreach (string p in Paths)
+                {
+                    regKey = Registry.LocalMachine.OpenSubKey(p + "\\" + v);
+                    if (regKey != null) break;
+                }
+                if (regKey != null) break;
+            }
 
             if (regKey == null)
             {
@@ -116,9 +134,9 @@ namespace DTWrapper.Helpers
                     _type = DTType.Lite;
                     _path += "DTLite.exe";
                 }
-                else
+                else 
                 {
-                    _type = DTType.Pro;
+                    _type = _path.IndexOf("Ultra") > 0 ? DTType.Ultra : DTType.Pro;
                     _path += "DTAgent.exe";
                 }
 

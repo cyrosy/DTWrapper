@@ -22,6 +22,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using DTWrapper.Helpers;
@@ -34,6 +35,7 @@ namespace DTWrapper.GUI
         {
             InitializeComponent();
             programIcon.Image = new Icon(DTWrapper.GUI.Properties.Resources.icon, 64, 64).ToBitmap();
+            programVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             if (File.Exists(Path.Combine(Environment.CurrentDirectory, "LICENCE.txt")))
             {
                 string[] licence = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "LICENCE.txt"));
