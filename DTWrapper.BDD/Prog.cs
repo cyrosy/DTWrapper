@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 using DTWrapper.Helpers;
@@ -13,7 +9,7 @@ namespace DTWrapper.BDD
     [Serializable]
     public class Prog
     {
-        private int _id;
+        private readonly int _id;
         private string _name;
         private string _path;
         private string _args;
@@ -55,13 +51,18 @@ namespace DTWrapper.BDD
 
         public Process Start()
         {
-            Process process = new Process();
-            process.StartInfo = new ProcessStartInfo(_path);
-            process.StartInfo.Arguments = _args;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.UseShellExecute = false;
+            var process = new Process
+            {
+                StartInfo =
+                    new ProcessStartInfo(_path)
+                    {
+                        Arguments = _args,
+                        CreateNoWindow = true,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false
+                    }
+            };
             process.Start();
             return process;
         }

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-
 using DTWrapper.Helpers;
 
 namespace DTWrapper.BDD
@@ -13,8 +9,8 @@ namespace DTWrapper.BDD
     [Serializable]
     public class Options
     {
-        private static readonly string _directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
-        private static readonly string _filename = "DTWrapper.conf";
+        private static readonly string Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
+        private const string Filename = "DTWrapper.conf";
 
         private VirtualDriveType _virtualDriveType = VirtualDriveType.NONE;
         private int _virtualDriveNum = -1;
@@ -47,7 +43,7 @@ namespace DTWrapper.BDD
 
         public static bool Save(Options options)
         {
-            string filepath = Path.Combine(_directory, _filename);
+            string filepath = Path.Combine(Directory, Filename);
             try {
                 if (File.Exists(filepath))
                 {
@@ -56,7 +52,7 @@ namespace DTWrapper.BDD
                 }
 
                 FileStream file = File.Open(filepath, FileMode.Create);
-                BinaryFormatter bf = new BinaryFormatter();
+                var bf = new BinaryFormatter();
                 bf.Serialize(file, options);
                 file.Flush();
                 file.Close();
@@ -65,7 +61,7 @@ namespace DTWrapper.BDD
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 if (File.Exists(filepath)) File.Delete(filepath);
                 if (File.Exists(filepath + ".bak")) File.Move(filepath + ".bak", filepath);
                 return false;
@@ -74,20 +70,20 @@ namespace DTWrapper.BDD
 
         public static Options Load()
         {
-            string filepath = Path.Combine(_directory, _filename);
+            string filepath = Path.Combine(Directory, Filename);
             if (!File.Exists(filepath)) return null;
             try
             {
                 FileStream file = File.OpenRead(filepath);
-                BinaryFormatter bf = new BinaryFormatter();
-                Options tmp = (Options)bf.Deserialize(file);
+                var bf = new BinaryFormatter();
+                var tmp = (Options)bf.Deserialize(file);
                 file.Close();
 
                 return tmp;
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 return null;
             }
         }

@@ -205,7 +205,7 @@ namespace DTWrapper.GUI
             if (progsListView.SelectedItems.Count == 1)
             {
                 Prog prog = progList.Get(Int32.Parse(progsListView.SelectedItems[0].Name));
-                ShortcutHelper.createShortcut(prog);
+                ShortcutHelper.CreateShortcut(prog);
             }
         }
 

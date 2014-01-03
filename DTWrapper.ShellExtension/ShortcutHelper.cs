@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-
 using IWshRuntimeLibrary;
 
 using DTWrapper.BDD;
@@ -12,18 +10,14 @@ namespace DTWrapper.ShellExtension
 {
     public class ShortcutHelper
     {
-        public static void createShortcut(Prog prog)
+        public static void CreateShortcut(Prog prog)
         {
-            WshShell shell = new WshShell();
-            string shortcutName = prog.Name;
-            foreach (char c in "<>:\"/\\|?*".ToCharArray().Union(Path.GetInvalidFileNameChars()))
-            {
-                shortcutName = shortcutName.Replace(c.ToString(), "");
-            }
+            var shell = new WshShell();
+            string shortcutName = "<>:\"/\\|?*".ToCharArray().Union(Path.GetInvalidFileNameChars()).Aggregate(prog.Name, (current, c) => current.Replace(c.ToString(CultureInfo.InvariantCulture), ""));
 
             string shortcutAddress = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), shortcutName + ".lnk");
 
-            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+            var shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
             shortcut.Description = prog.Name + " via DTWrapper";
             shortcut.TargetPath = System.Reflection.Assembly.GetEntryAssembly().Location;
             shortcut.Arguments = "start " + prog.ID;

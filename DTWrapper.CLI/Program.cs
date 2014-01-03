@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using DTWrapper.BDD;
@@ -48,9 +45,8 @@ namespace DTWrapper.CLI
 
         private static int Start(string progName)
         {
-            System.Windows.Forms.NotifyIcon trayIcon = new NotifyIcon();
-            trayIcon.Icon = GUI.Properties.Resources.icon;
-            ProgList progs = new ProgList();
+            var trayIcon = new NotifyIcon {Icon = GUI.Properties.Resources.icon};
+            var progs = new ProgList();
             Prog prog;
 
             try
@@ -58,7 +54,7 @@ namespace DTWrapper.CLI
                 int progId = Int32.Parse(progName);
                 prog = progs.Get(progId);
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 prog = progs.Get(progName);
             }
@@ -69,12 +65,11 @@ namespace DTWrapper.CLI
                 return -1;
             }
 
-            InfoWindow info = new InfoWindow(String.Format(Localization.Strings.ProgPreparing, prog.Name));
+            var info = new InfoWindow(String.Format(Localization.Strings.ProgPreparing, prog.Name));
             info.Show();
 
             trayIcon.Text = String.Format(Localization.Strings.ProgWaitingEnd, prog.Name);
 
-            Options opts = null;
             VirtualDrive virtualDrive = null;
             if(prog.DiskImage.Length > 0)
             {
@@ -83,7 +78,7 @@ namespace DTWrapper.CLI
                     return -1;
                 }
 
-                opts = new Options();
+                var opts = new Options();
                 if (!opts.Reload())
                 {
                     ShowError(Localization.Strings.OptionsError);
@@ -94,19 +89,17 @@ namespace DTWrapper.CLI
                 if (!virtualDrive.IsValid)
                 {
                     info.Close();
-                    ShowError(Localization.Strings.InvalidDrive + " : " + virtualDrive.ToString());
+                    ShowError(Localization.Strings.InvalidDrive + " : " + virtualDrive);
                     return -1;
                 }
-                else
+
+                info.Close();
+                info = new InfoWindow(String.Format(Localization.Strings.DiskImageMounting, prog.DiskImage, prog.Name));
+                info.Show();
+                if (!prog.MountDiskImage(virtualDrive))
                 {
-                    info.Close();
-                    info = new InfoWindow(String.Format(Localization.Strings.DiskImageMounting, prog.DiskImage, prog.Name));
-                    info.Show();
-                    if (!prog.MountDiskImage(virtualDrive))
-                    {
-                        ShowError(Localization.Strings.ErrorMounting);
-                        return -1;
-                    }
+                    ShowError(Localization.Strings.ErrorMounting);
+                    return -1;
                 }
             }
 
@@ -132,11 +125,13 @@ namespace DTWrapper.CLI
 
         private static void ShowMessage(string msg, string caption)
         {
+            // ReSharper disable once LocalizableElement
             MessageBox.Show(null, msg, Localization.Strings.ProgramName + " - " + caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private static void ShowError(string msg)
         {
+            // ReSharper disable once LocalizableElement
             MessageBox.Show(null, msg, Localization.Strings.ProgramName + " - " + Localization.Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }

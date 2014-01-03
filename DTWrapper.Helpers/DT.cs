@@ -18,9 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using Microsoft.Win32;
 
 namespace DTWrapper.Helpers
@@ -94,20 +92,24 @@ namespace DTWrapper.Helpers
         /// </summary>
         public static void ReadRegistry()
         {
-            var Paths = new List<string>();
-            Paths.Add("SOFTWARE\\Disc Soft");
-            Paths.Add("SOFTWARE\\Wow6432Node\\Disc Soft");
-            Paths.Add("SOFTWARE\\DT Soft");
-            Paths.Add("SOFTWARE\\Wow6432Node\\DT Soft");
+            var paths = new List<string>
+            {
+                "SOFTWARE\\Disc Soft",
+                "SOFTWARE\\Wow6432Node\\Disc Soft",
+                "SOFTWARE\\DT Soft",
+                "SOFTWARE\\Wow6432Node\\DT Soft"
+            };
 
-            var Versions = new List<string>();
-            Versions.Add("DAEMON Tools Pro");
-            Versions.Add("DAEMON Tools Ultra");
+            var versions = new List<string>
+            {
+                "DAEMON Tools Pro",
+                "DAEMON Tools Ultra"
+            };
 
             RegistryKey regKey = null;
-            foreach (string v in Versions)
+            foreach (string v in versions)
             {
-                foreach (string p in Paths)
+                foreach (string p in paths)
                 {
                     regKey = Registry.LocalMachine.OpenSubKey(p + "\\" + v);
                     if (regKey != null) break;
@@ -129,14 +131,14 @@ namespace DTWrapper.Helpers
                     _path += "\\";
                 }
 
-                if (_path.IndexOf("Lite") > 0)
+                if (_path.IndexOf("Lite", StringComparison.Ordinal) > 0)
                 {
                     _type = DTType.Lite;
                     _path += "DTLite.exe";
                 }
                 else 
                 {
-                    _type = _path.IndexOf("Ultra") > 0 ? DTType.Ultra : DTType.Pro;
+                    _type = _path.IndexOf("Ultra", StringComparison.Ordinal) > 0 ? DTType.Ultra : DTType.Pro;
                     _path += "DTAgent.exe";
                 }
 
@@ -195,12 +197,17 @@ namespace DTWrapper.Helpers
 
             try
             {
-                Process dtProcess = new Process();
-                dtProcess.StartInfo = new ProcessStartInfo(_path, command);
-                dtProcess.StartInfo.RedirectStandardOutput = true;
-                dtProcess.StartInfo.RedirectStandardError = true;
-                dtProcess.StartInfo.UseShellExecute = false;
-                dtProcess.StartInfo.CreateNoWindow = true;
+                var dtProcess = new Process
+                {
+                    StartInfo =
+                        new ProcessStartInfo(_path, command)
+                        {
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        }
+                };
                 dtProcess.Start();
                 dtProcess.WaitForExit();
                 
@@ -208,7 +215,7 @@ namespace DTWrapper.Helpers
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 return -1;
             }
         }

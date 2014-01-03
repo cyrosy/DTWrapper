@@ -16,11 +16,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Resources;
-using System.Text;
 using System.Windows.Forms;
 
 using DTWrapper.CLI;
@@ -31,7 +28,7 @@ namespace DTWrapper
 {
     class Launcher
     {
-        private static ResourceManager Locale = new ResourceManager("DTWrapper.Launcher", typeof(Launcher).Assembly);
+        private static readonly ResourceManager Locale = new ResourceManager("DTWrapper.Launcher", typeof(Launcher).Assembly);
         /// <summary>
         /// Application's entry point
         /// </summary>
@@ -66,7 +63,7 @@ namespace DTWrapper
             }
             catch (Exception e)
             {
-                LogHelper.RaiseError(null, e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.RaiseError(null, e.Message + Environment.NewLine + e.StackTrace);
             }
         }
     }

@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
@@ -29,20 +28,20 @@ namespace DTWrapper.Helpers
     /// </summary>
     public class LogHelper
     {
-        private static readonly int logsToKeep = 10;
+        private const int LogsToKeep = 10;
         private static readonly string Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper", "Logs");
-        private static string Filename = "";
+        private static string _filename = "";
 
         private LogHelper() {}
 
         /// <summary>
         /// Rotate the old log files, and create a new one
         /// </summary>
-        private static void init()
+        private static void Init()
         {
             try
             {
-                DirectoryInfo dirInfos = new DirectoryInfo(Folder);
+                var dirInfos = new DirectoryInfo(Folder);
                 if (!dirInfos.Exists)
                 {
                     dirInfos.Create();
@@ -72,7 +71,7 @@ namespace DTWrapper.Helpers
                 {
                     if (files.ElementAt(i).Exists)
                     {
-                        if (i < logsToKeep - 1)
+                        if (i < LogsToKeep - 1)
                         {
                             files.ElementAt(i).MoveTo(files.ElementAt(i).DirectoryName + "/" + (i + 1) + ".log");
                         }
@@ -83,9 +82,9 @@ namespace DTWrapper.Helpers
                     }
                 }
             }
-            catch (Exception e) { MessageBox.Show(null, e.StackTrace.ToString(), e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception e) { MessageBox.Show(null, e.StackTrace, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
-            Filename = "0.log";
+            _filename = "0.log";
         }
 
         /// <summary>
@@ -104,19 +103,19 @@ namespace DTWrapper.Helpers
         /// <param name="type">The level of the message</param>
         public static void WriteLine(string msg, MessageType type)
         {
-            if (Filename.Length == 0)
+            if (_filename.Length == 0)
             {
-                init();
+                Init();
             }
 
-            StreamWriter LogStream = new StreamWriter(Folder + "/" + Filename, true);
+            var logStream = new StreamWriter(Folder + "/" + _filename, true);
 
             DateTime now = DateTime.Now;
-            String preamble = "[" + now.ToString() + "][" + type.ToString() + "] ";
-            LogStream.WriteLine(preamble + msg.Replace(Environment.NewLine, Environment.NewLine.PadRight(preamble.Length)));
+            String preamble = "[" + now + "][" + type + "] ";
+            logStream.WriteLine(preamble + msg.Replace(Environment.NewLine, Environment.NewLine.PadRight(preamble.Length)));
 
-            LogStream.Flush();
-            LogStream.Close();
+            logStream.Flush();
+            logStream.Close();
         }
 
         /// <summary>

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-
 using DTWrapper.Helpers;
 
 namespace DTWrapper.BDD
@@ -13,13 +10,12 @@ namespace DTWrapper.BDD
     [Serializable]
     public class ProgList
     {
-        private static readonly string _directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
-        private static readonly string _filename = "DTWrapper.progs";
-        private int _currentId = 0;
+        private static readonly string Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DTWrapper");
+        private const string Filename = "DTWrapper.progs";
         private List<Prog> _progs = new List<Prog>();
 
         public List<Prog> Progs { get { if (_progs.Count < 1) Reload(); return (from p in _progs select p).ToList(); } }
-        public int CurrentID { get { return _currentId; } }
+        public int CurrentID { get; private set; }
 
         public ProgList()
         {
@@ -28,7 +24,7 @@ namespace DTWrapper.BDD
 
         public Prog CreateProg()
         {
-            return new Prog(++_currentId);
+            return new Prog(++CurrentID);
         }
 
         public bool Add(Prog program)
@@ -49,7 +45,7 @@ namespace DTWrapper.BDD
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 return false;
             }
         }
@@ -76,7 +72,7 @@ namespace DTWrapper.BDD
 
         public static bool Save(ProgList list)
         {
-            string filepath = Path.Combine(_directory, _filename);
+            string filepath = Path.Combine(Directory, Filename);
             try
             {
                 if (File.Exists(filepath))
@@ -86,7 +82,7 @@ namespace DTWrapper.BDD
                 }
 
                 FileStream file = File.Open(filepath, FileMode.Create);
-                BinaryFormatter fm = new BinaryFormatter();
+                var fm = new BinaryFormatter();
                 fm.Serialize(file, list);
                 file.Flush();
                 file.Close();
@@ -95,7 +91,7 @@ namespace DTWrapper.BDD
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 if (File.Exists(filepath)) File.Delete(filepath);
                 if (File.Exists(filepath + ".bak")) File.Move(filepath + ".bak", filepath);
                 return false;
@@ -104,21 +100,20 @@ namespace DTWrapper.BDD
 
         public static ProgList Load()
         {
-            string filepath = Path.Combine(_directory, _filename);
+            string filepath = Path.Combine(Directory, Filename);
             if (!File.Exists(filepath)) return null;
             try
             {
-                ProgList tmp;
                 FileStream file = File.OpenRead(filepath);
-                BinaryFormatter bf = new BinaryFormatter();
-                tmp = (ProgList)bf.Deserialize(file);
+                var bf = new BinaryFormatter();
+                var tmp = (ProgList)bf.Deserialize(file);
                 file.Close();
 
                 return tmp;
             }
             catch (Exception e)
             {
-                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace.ToString());
+                LogHelper.WriteLine(e.Message + Environment.NewLine + e.StackTrace);
                 return null;
             }
         }
@@ -128,7 +123,7 @@ namespace DTWrapper.BDD
             ProgList tmp = Load();
             if (tmp == null) return false;
 
-            _currentId = tmp.CurrentID;
+            CurrentID = tmp.CurrentID;
             _progs = tmp.Progs;
             return true;
         }
